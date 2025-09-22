@@ -14,7 +14,7 @@ in
     homeManager.${name} =
       { ... }:
       {
-        imports = [ inputs.nixowos.homeManagerModules.default ];
+        imports = [ inputs.nixowos.homeModules.default ];
         nixowos = {
           enable = true;
           overlays.enable = true;
