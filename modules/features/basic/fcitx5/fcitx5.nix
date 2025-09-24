@@ -18,11 +18,26 @@ in
         ];
       };
 
+      # set up config file
       xdg.configFile."fcitx5/profile" = {
         source = ./profile;
         # every time fcitx5 switch input method, it will modify ~/.config/fcitx5/profile,
         # so we need to force replace it in every rebuild to avoid file conflict.
         force = true;
       };
+
+      # set up env
+      home.sessionVariables = {
+        GTK_IM_MODULE = "fcitx";
+        QT_IM_MODULE = "fcitx";
+        XMODIFIERS = "@im=fcitx";
+      };
+
+      programs.bash.initExtra = ''
+        # start fcitx5 in bash if it is not started yet
+        if ! pgrep -x "fcitx5" > /dev/null; then
+        fcitx5 -d --replace > /dev/null 2>&1 &
+        fi
+      '';
     };
 }
