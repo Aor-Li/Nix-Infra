@@ -4,6 +4,7 @@ let
     { ... }:
     {
       imports = [
+        config.flake.modules.homeManager."feature/dev"
         config.flake.modules.homeManager."feature/tui"
         config.flake.modules.homeManager."feature/ai"
       ];
