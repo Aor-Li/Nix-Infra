@@ -36,7 +36,7 @@ in
       programs.bash.initExtra = ''
         # start fcitx5 in bash if it is not started yet
         if ! pgrep -x "fcitx5" > /dev/null; then
-        fcitx5 -d --replace > /dev/null 2>&1 &
+          fcitx5 -d --replace > /dev/null 2>&1 &
         fi
       '';
     };
