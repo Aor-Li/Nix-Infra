@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  name = "feature/basic";
+  name = "feature/sys";
 in
 {
   flake.modules = {

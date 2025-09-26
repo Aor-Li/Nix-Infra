@@ -1,5 +1,10 @@
+{ ... }:
+let
+  name = "feature/system/network/ssh";
+in
 {
-  flake.modules.nixos."feature/network".imports = [
+  flake.modules.nixos.${name} =
+    { ... }:
     {
       services.openssh = {
         enable = true;
@@ -10,6 +15,5 @@
           PermitRootLogin = "prohibit-password";
         };
       };
-    }
-  ];
+    };
 }

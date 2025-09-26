@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/tui/git";
+  name = "feature/tui/dev/git";
 in
 {
   flake.modules = {

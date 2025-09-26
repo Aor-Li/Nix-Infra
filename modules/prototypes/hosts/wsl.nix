@@ -5,7 +5,6 @@ let
     {
       imports = [
         config.flake.modules.nixos."host/common"
-        config.flake.modules.nixos."feature/ai"
       ];
     };
 in

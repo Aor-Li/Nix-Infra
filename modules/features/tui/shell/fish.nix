@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/tui/fish";
+  name = "feature/tui/shell/fish";
 in
 {
   flake.modules = {

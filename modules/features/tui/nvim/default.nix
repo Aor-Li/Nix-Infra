@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  name = "feature/daily";
+  name = "feature/tui/nvim";
 in
 {
   flake.modules = {

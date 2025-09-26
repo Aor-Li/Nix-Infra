@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  name = "feature/ai/claude-code";
+  name = "feature/tui/ai/claude-code";
 in
 {
   flake.modules = {

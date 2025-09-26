@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  name = "feature/tui/nixcat";
+  name = "feature/tui/nvim/nixcat";
 in
 {
   flake.modules = {

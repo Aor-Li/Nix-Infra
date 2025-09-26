@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/network/network-manager";
+  name = "feature/system/network/network-manager";
 in
 {
   flake.modules.nixos.${name} =

@@ -6,9 +6,10 @@ let
       imports = [
         config.flake.modules.homeManager."private/system"
         config.flake.modules.homeManager."private/nix"
-        config.flake.modules.homeManager."feature/basic"
-        config.flake.modules.homeManager."feature/daily"
-        config.flake.modules.homeManager."feature/network"
+        config.flake.modules.homeManager."feature/sys"
+        config.flake.modules.homeManager."feature/tui"
+        config.flake.modules.homeManager."feature/gui"
+        config.flake.modules.homeManager."feature/app"
       ];
     };
 in

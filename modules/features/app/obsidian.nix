@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/daily/obsidian";
+  name = "feature/app/obsidian";
 in
 {
   flake.modules.homeManager.${name} =

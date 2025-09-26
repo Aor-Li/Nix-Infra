@@ -4,7 +4,6 @@ let
     { options, lib, ... }:
     {
       imports = [
-        config.flake.modules.homeManager."feature/learn"
       ];
     };
 in

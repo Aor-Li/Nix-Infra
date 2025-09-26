@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/basic/fcitx5";
+  name = "feature/system/input-method";
 in
 {
   flake.modules.homeManager.${name} =

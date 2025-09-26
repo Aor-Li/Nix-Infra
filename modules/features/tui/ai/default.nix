@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  name = "feature/network";
+  name = "feature/tui/ai";
 in
 {
   flake.modules = {
