@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/system/input-method";
+  name = "feature/sys/input-method";
 in
 {
   flake.modules.homeManager.${name} =

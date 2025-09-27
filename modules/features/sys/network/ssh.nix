@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/system/network/ssh";
+  name = "feature/sys/network/ssh";
 in
 {
   flake.modules.nixos.${name} =

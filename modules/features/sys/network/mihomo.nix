@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/system/network/mihomo";
+  name = "feature/sys/network/mihomo";
 in
 {
   flake.modules = {

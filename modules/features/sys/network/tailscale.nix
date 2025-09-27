@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/system/network/tailscale";
+  name = "feature/sys/network/tailscale";
   tailscale_port = 41641;
 in
 {

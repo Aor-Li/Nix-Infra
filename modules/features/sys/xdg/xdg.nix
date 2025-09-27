@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/system/xdg";
+  name = "feature/sys/xdg";
 in
 {
   flake.modules.homeManager.${name} =
