@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/gui/remote_desktop/sunshine";
+  name = "feature/gui/remote-desktop/sunshine";
 in
 {
   flake.modules.nixos.${name} =
