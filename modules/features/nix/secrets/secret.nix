@@ -22,11 +22,16 @@ in
 
       sops = {
         age.keyFile = "/home/${userConfig.username}/.config/sops/age/keys.txt";
-        defaultSopsFile = ../../../secrets/secrets.yaml;
+        defaultSopsFile = ../../../../secrets/secrets.yaml;
       };
 
-      #programs.bash.sessionVariables = {
-      #  TEST_SECRET = config.sops.secrets.github_access_token;
-      #};
+      sops.secrets.github_access_token = {
+        # %r will be automaticly replaced with $XDG_RUNTIME_DIR
+        path = "%r/secret.txt";
+      };
+
+      # programs.bash.sessionVariables = {
+      #   TEST_SECRET = config.sops.secrets.github_access_token;
+      # };
     };
 }
