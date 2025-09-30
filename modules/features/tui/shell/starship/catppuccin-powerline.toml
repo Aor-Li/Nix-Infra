@@ -167,7 +167,7 @@ disabled = false
 impure_msg = '[impure shell](fg:crust bg:mauve)'
 pure_msg = '[pure shell](fg:crust bg:mauve)'
 unknown_msg = '[unknown shell](fg:crust bg:mauve)'
-format = 'via [](fg:mauve)[☃️  $state( \($name\)) ](fg:crust bg:mauve)[ ](fg:mauve)'
+format = 'via [](fg:mauve)[󰜗 $state( \($name\)) ](fg:crust bg:mauve)[ ](fg:mauve)'
 
 [line_break]
 disabled = true

@@ -30,8 +30,5 @@ in
         path = "%r/secret.txt";
       };
 
-      # programs.bash.sessionVariables = {
-      #   TEST_SECRET = config.sops.secrets.github_access_token;
-      # };
     };
 }
