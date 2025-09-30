@@ -24,8 +24,8 @@ in
           settings = {
             logo = {
               type = "builtin";
-              height = 30;
-              width = 30;
+              height = 20;
+              width = 20;
               padding = {
                 top = 2;
                 left = 3;
