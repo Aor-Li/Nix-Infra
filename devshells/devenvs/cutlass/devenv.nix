@@ -1,17 +1,24 @@
-{ pkgs, lib, config, inputs, ... }:
-
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 {
   enterShell = ''
     clear
     fastfetch
-    '';
-  
+  '';
 
   # https://devenv.sh/basics/
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git ];
+  packages = [
+    pkgs.cmake
+    pkgs.cudaPackages.cudatoolkit
+  ];
 
   # https://devenv.sh/languages/
   # languages.rust.enable = true;
