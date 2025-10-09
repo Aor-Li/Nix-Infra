@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "private/nix/allow-unfree";
+  name = "feature/nix/allow-unfree";
 in
 {
   flake.modules.nixos.${name} =
@@ -8,6 +8,7 @@ in
     {
       nixpkgs.config.allowUnfree = true;
     };
+
   flake.modules.homeManager.${name} =
     { pkgs, ... }:
     {
