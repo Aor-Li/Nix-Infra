@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  name = "private/nix/home-manager";
+  name = "feature/nix/home-manager";
 in
 {
   flake.modules = {

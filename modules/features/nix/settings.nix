@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "private/nix/settings";
+  name = "feature/nix/settings";
 in
 {
   flake.modules.nixos.${name} =

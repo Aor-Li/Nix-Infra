@@ -1,5 +1,9 @@
+{ ... }:
+let
+  name = "feature/nix/nix-index";
+in 
 {
-  flake.modules.nixos."private/nix/nix-index" =
+  flake.modules.nixos.${name} =
     { ... }:
     {
       programs.nix-index = {

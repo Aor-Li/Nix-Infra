@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "private/nix/nh";
+  name = "feature/nix/nh";
 in
 {
   flake.modules = {

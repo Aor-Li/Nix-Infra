@@ -5,7 +5,7 @@ let
     {
       imports = [
         config.flake.modules.nixos."private/system"
-        config.flake.modules.nixos."private/nix"
+        config.flake.modules.nixos."feature/nix"
         config.flake.modules.nixos."feature/sys"
         config.flake.modules.nixos."feature/tui"
         config.flake.modules.nixos."feature/gui"
