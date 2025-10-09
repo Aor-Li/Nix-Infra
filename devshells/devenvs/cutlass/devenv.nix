@@ -11,14 +11,16 @@
     fastfetch
   '';
 
-  # https://devenv.sh/basics/
-  env.GREET = "devenv";
-
-  # https://devenv.sh/packages/
   packages = [
     pkgs.cmake
+    pkgs.python314
+    pkgs.cudaPackages.cuda_cudart
     pkgs.cudaPackages.cudatoolkit
   ];
+
+  env = {
+    CUDA_PATH = "${pkgs.cudaPackages.cudatoolkit}";
+  };
 
   # https://devenv.sh/languages/
   # languages.rust.enable = true;

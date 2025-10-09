@@ -4,6 +4,7 @@ inputs:
     url: github:cachix/devenv-nixpkgs/rolling
 
 allowUnfree: true
+cudaSupport: true
 
 # If you're willing to use a package that's vulnerable
 # permittedInsecurePackages:
