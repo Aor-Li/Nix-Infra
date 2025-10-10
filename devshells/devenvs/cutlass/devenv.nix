@@ -16,10 +16,16 @@
     pkgs.python314
     pkgs.cudaPackages.cuda_cudart
     pkgs.cudaPackages.cudatoolkit
+    
+    pkgs.llvmPackages_latest.clang-tools
   ];
 
   env = {
     CUDA_PATH = "${pkgs.cudaPackages.cudatoolkit}";
+  };
+
+  scripts = {
+    cm.exec = "cmake -S ./cutlass -B ./build -D CUTLASS_NVCC_ARCHS=\"80\" -D CMAKE_BUILD_TYPE=Debug -D CMAKE_EXPORT_COMPILE_COMMANDS=On";
   };
 
   # https://devenv.sh/languages/
