@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "private/system/system-packages";
+  name = "feature/sys/basic/tools";
 in
 {
   flake.modules.nixos.${name} =
@@ -9,9 +9,14 @@ in
       environment.systemPackages = with pkgs; [
         vim
         git
-        htop
         wget
         tree
+
+        htop
+        btop
+
+        fd
+        fzf
       ];
     };
 }

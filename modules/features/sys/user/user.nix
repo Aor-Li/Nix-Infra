@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "private/system/user";
+  name = "feature/sys/user";
 in
 {
   flake.modules.nixos.${name} =

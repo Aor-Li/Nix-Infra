@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "private/system/sleep";
+  name = "feature/sys/basic/sleep";
 in
 {
   flake.modules.nixos.${name} =

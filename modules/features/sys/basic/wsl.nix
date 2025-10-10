@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  name = "private/system/wsl";
+  name = "feature/sys/basic/wsl";
 in
 {
   flake.modules.nixos.${name} =

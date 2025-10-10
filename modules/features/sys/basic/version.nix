@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "private/system/version";
+  name = "feature/sys/basic/version";
 in
 {
   flake.modules.nixos.${name} =

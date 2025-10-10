@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "private/system/hostname";
+  name = "feature/sys/basic/hostname";
 in
 {
   flake.modules.nixos.${name} =

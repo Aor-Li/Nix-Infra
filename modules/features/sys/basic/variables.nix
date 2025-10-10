@@ -1,7 +1,7 @@
 # This module sets some essential system variables for global utilities.
 { ... }:
 let
-  name = "private/system/variables";
+  name = "feature/sys/basic/variables";
 in
 {
   flake.modules.nixos.${name} =

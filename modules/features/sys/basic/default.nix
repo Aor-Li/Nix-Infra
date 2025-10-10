@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   inherit (config.flake.meta.lib) isDirectSubmodule;
-  name = "private/system";
+  name = "feature/sys/basic";
 in
 {
   flake.modules = {

@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "private/system/fonts";
+  name = "feature/sys/fonts";
 in
 {
   flake.modules.nixos.${name} =
