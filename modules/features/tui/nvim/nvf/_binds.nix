@@ -1,13 +1,11 @@
 {
   programs.nvf.settings.vim.binds = {
-    whichkey = {
+    whichKey = {
       enable = true;
-      presets = {
-        operators = true;
-        setupOpts.notify = true;
-        setupOpts.preset = "modern"; # classic, modern, helix
-        setupOpts.win.border = "rounded";
-      };
+      setupOpts.notify = true;
+      setupOpts.preset = "modern"; # classic, modern, helix
+      setupOpts.win.border = "rounded";
+
     };
   };
 }
