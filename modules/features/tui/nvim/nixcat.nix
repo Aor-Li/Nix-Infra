@@ -7,8 +7,8 @@ in
     homeManager.${name} =
       { config, pkgs, ... }:
       {
-        # imports = [ inputs.lazyvim.homeModules.default ];
-        # nvim.enable = true;
+        imports = [ inputs.lazyvim.homeModules.default ];
+        nvim.enable = true;
       };
   };
 }

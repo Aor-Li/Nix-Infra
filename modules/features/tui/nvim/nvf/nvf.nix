@@ -14,6 +14,6 @@ in
 
         ./_snacks-nvim.nix
       ];
-      programs.nvf.enable = true;
+      programs.nvf.enable = false;
     };
 }
