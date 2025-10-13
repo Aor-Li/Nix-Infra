@@ -8,11 +8,16 @@ in
     {
       imports = [
         inputs.nvf.homeManagerModules.default
-        ./_appearance.nix
-        ./_binds.nix
-        # ./_languages.nix
 
-        ./_snacks-nvim.nix
+        ./default/_options.nix
+        # ./default/_keymaps.nix
+
+        ./plugins/_appearance.nix
+        ./plugins/_whichkey.nix
+        ./plugins/_snacks.nix
+
+        ./langs/_languages.nix
+
       ];
       programs.nvf.enable = true;
     };
