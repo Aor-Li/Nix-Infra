@@ -4,7 +4,5 @@
     globals.mapleader = " ";
     globals.maplocalleader = "\\";
 
-    # auto format
-    languages.enableFormat = true;
   };
 }

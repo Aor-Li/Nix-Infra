@@ -8,16 +8,10 @@ in
     {
       imports = [
         inputs.nvf.homeManagerModules.default
-
-        ./default/_options.nix
-        # ./default/_keymaps.nix
-
-        ./plugins/_appearance.nix
-        ./plugins/_whichkey.nix
-        ./plugins/_snacks.nix
-
-        ./langs/_languages.nix
-
+        ./_options.nix
+        ./_appearance.nix
+        ./_languages.nix
+        ./_plugins.nix
       ];
       programs.nvf.enable = true;
     };
