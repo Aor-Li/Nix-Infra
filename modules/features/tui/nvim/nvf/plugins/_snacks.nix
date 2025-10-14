@@ -6,8 +6,7 @@
       enable = true;
       setupOpts = {
         bigfile.enable = true;
-        dashboard.enable = true;
-
+        dashboard.enable = false;
         picker.enable = true;
         explorer.enable = true;
       };

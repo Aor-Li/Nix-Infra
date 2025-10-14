@@ -19,6 +19,6 @@ in
         ./langs/_languages.nix
 
       ];
-      programs.nvf.enable = false;
+      programs.nvf.enable = true;
     };
 }

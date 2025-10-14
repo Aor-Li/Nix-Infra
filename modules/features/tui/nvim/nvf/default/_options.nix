@@ -6,6 +6,5 @@
 
     # auto format
     languages.enableFormat = true;
-
   };
 }
