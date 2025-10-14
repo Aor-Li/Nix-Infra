@@ -13,12 +13,20 @@
       };
     };
 
+    # mini-nvim: see https://github.com/nvim-mini/mini.nvim
+    mini = {
+      icons.enable = true;
+    };
+
     # whichkey
     binds.whichKey = {
       enable = true;
       setupOpts.notify = true;
-      setupOpts.preset = "modern"; # classic, modern, helix
+      setupOpts.preset = "helix"; # classic, modern, helix
       setupOpts.win.border = "rounded";
     };
+
+    # web icons
+    visuals.nvim-web-devicons.enable = true;
   };
 }

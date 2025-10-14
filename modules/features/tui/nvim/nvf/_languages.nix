@@ -1,9 +1,8 @@
 {
   programs.nvf.settings = {
     vim.languages = {
-      enableLSP = true;
-      enableTreesitter = true;
       enableFormat = true;
+      enableTreesitter = true;
     };
 
     # nix
