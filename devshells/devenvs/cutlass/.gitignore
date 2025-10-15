@@ -1,5 +1,9 @@
 .cutlass
 
+# cache data
+.cache
+compile_commands.json
+
 # Devenv
 .devenv*
 devenv.local.nix
