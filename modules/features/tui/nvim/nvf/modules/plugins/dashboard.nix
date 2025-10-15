@@ -6,13 +6,9 @@ in
   flake.modules.homeManager.${name} =
     { ... }:
     {
-      imports = [
-        inputs.nvf.homeManagerModules.default
-      ];
-
-      programs.nvf = {
+      programs.nvf.settings.vim.utility.snacks-nvim.setupOpts.dashboard = {
         enable = true;
-        enableManpages = true;
+        
       };
     };
 }
