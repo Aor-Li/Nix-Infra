@@ -9,6 +9,7 @@ let
         config.flake.modules.nixos."feature/tui"
         config.flake.modules.nixos."feature/gui"
         config.flake.modules.nixos."feature/app"
+        config.flake.modules.nixos."feature/dev"
       ];
     };
 in
