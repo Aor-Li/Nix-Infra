@@ -18,11 +18,6 @@ in
           };
         };
 
-        # mini-nvim: see https://github.com/nvim-mini/mini.nvim
-        mini = {
-          icons.enable = true;
-        };
-
         # whichkey
         binds.whichKey = {
           enable = true;
@@ -34,8 +29,6 @@ in
         # telescope
         telescope.enable = true;
 
-        # web icons
-        visuals.nvim-web-devicons.enable = true;
       };
     };
 }

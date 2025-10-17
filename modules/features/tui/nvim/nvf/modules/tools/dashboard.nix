@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 let
   name = "feature/tui/nvim/nvf";
 in
@@ -6,10 +6,8 @@ in
   flake.modules.homeManager.${name} =
     { ... }:
     {
-      programs.nvf.settings.vim.theme = {
+      programs.nvf.settings.vim.utility.snacks-nvim.setupOpts.dashboard = {
         enable = true;
-        name = "catppuccin";
-        style = "mocha";
       };
     };
 }
