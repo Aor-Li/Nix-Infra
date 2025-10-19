@@ -12,11 +12,6 @@ in {
         codewindow.enable = false; # lighter, faster, and uses lua for configuration
       };
 
-      dashboard = {
-        dashboard-nvim.enable = false;
-        alpha.enable = true;
-      };
-
       notify = {
         nvim-notify.enable = true;
       };
