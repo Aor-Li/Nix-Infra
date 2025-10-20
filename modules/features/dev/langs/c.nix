@@ -3,27 +3,25 @@ let
   name = "feature/dev/langs/c";
 in
 {
-  flake.modules.nixos.${name} = 
+  flake.modules.nixos.${name} =
     { pkgs, ... }:
     {
-      environment.systemPackages = with pkgs; [
-        
-        # compiler
-        gcc15
+      # environment.systemPackages = with pkgs; [
+      #   # compiler
+      #   gcc15
+      #   llvmPackages.clang
+      #   llvmPackages.lld
+      #   llvmPackages.libcxx
 
-        llvmPackages_21.clang
-        llvmPackages_21.lld
-        llvmPackages_21.libcxx
-        
-        # build tools
-        cmake
-        ninja
-        gnumake
-        pkg-config
+      #   # build tools
+      #   cmake
+      #   ninja
+      #   gnumake
+      #   pkg-config
 
-        # debug tools
-        gdb
-        lldb
-      ];
+      #   # debug tools
+      #   gdb
+      #   lldb
+      # ];
     };
 }

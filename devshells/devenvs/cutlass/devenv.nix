@@ -12,12 +12,12 @@
   '';
 
   packages = [
+    pkgs.clang-tools
+
     pkgs.cmake
     pkgs.python314
     pkgs.cudaPackages.cuda_cudart
     pkgs.cudaPackages.cudatoolkit
-    
-    pkgs.llvmPackages_latest.clang-tools
   ];
 
   env = {

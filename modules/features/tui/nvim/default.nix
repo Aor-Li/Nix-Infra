@@ -1,16 +1,18 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.flake.meta.lib) isDirectSubmodule;
   name = "feature/tui/nvim";
-in
-{
+in {
   flake.modules = {
     nixos.${name}.imports =
-      config.flake.modules.nixos or { }
+      config.flake.modules.nixos or {}
       |> lib.filterAttrs (moduleName: _: isDirectSubmodule name moduleName)
       |> builtins.attrValues;
     homeManager.${name}.imports =
-      config.flake.modules.homeManager or { }
+      config.flake.modules.homeManager or {}
       |> lib.filterAttrs (moduleName: _: isDirectSubmodule name moduleName)
       |> builtins.attrValues;
   };
