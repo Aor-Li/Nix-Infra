@@ -1,3 +1,6 @@
 [submodule "devshells/devenvs/cutlass/cutlass"]
 	path = devshells/devenvs/cutlass/cutlass
 	url = git@github.com:NVIDIA/cutlass.git
+[submodule "devshells/devenvs/less_slow.cpp/less_slow.cpp"]
+	path = devshells/devenvs/less_slow.cpp/less_slow.cpp
+	url = git@github.com:ashvardanian/less_slow.cpp.git
