@@ -3,6 +3,9 @@
 devenv.local.nix
 devenv.local.yaml
 
+# cache
+.cache
+
 # direnv
 .direnv
 

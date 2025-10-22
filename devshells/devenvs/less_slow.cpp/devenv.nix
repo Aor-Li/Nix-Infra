@@ -29,6 +29,13 @@
   };
 
   scripts = {
-    cm.exec = "cmake -S ./less_slow.cpp -B ./build -DCMAKE_EXPORT_COMPILE_COMMANDS=On";
+    "cm".exec = "cmake -S ./less_slow.cpp -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=On";
+    "mi".exec = "cmake --build ./build --config Release";
+  };
+
+  tasks = {
+    "test:all" = {
+      exec = "./build/less_slow";
+    };
   };
 }
