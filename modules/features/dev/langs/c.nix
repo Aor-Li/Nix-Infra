@@ -6,22 +6,24 @@ in
   flake.modules.nixos.${name} =
     { pkgs, ... }:
     {
-      # environment.systemPackages = with pkgs; [
-      #   # compiler
-      #   gcc15
-      #   llvmPackages.clang
-      #   llvmPackages.lld
-      #   llvmPackages.libcxx
+      # packages
+      environment.systemPackages = with pkgs; [
+        # lsp
+        clang-tools
 
-      #   # build tools
-      #   cmake
-      #   ninja
-      #   gnumake
-      #   pkg-config
+        # compiler
+        gcc15
+        llvmPackages.clang
 
-      #   # debug tools
-      #   gdb
-      #   lldb
-      # ];
+        # build tools
+        cmake
+        ninja
+        gnumake
+        pkg-config
+
+        # debug tools
+        gdb
+        ldb
+      ];
     };
 }
