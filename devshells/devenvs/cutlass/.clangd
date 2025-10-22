@@ -1,4 +1,0 @@
-CompileFlags:
-  Add: [
-    "query-driver=/nix/store/95k9rsn1zsw1yvir8mj824ldhf90i4qw-gcc-wrapper-14.3.0/bin/gcc,/nix/store/95k9rsn1zsw1yvir8mj824ldhf90i4qw-gcc-wrapper-14.3.0/bin/g++,/nix/store/aglaz7fmxmmppmdvkqg15fn4a3056zj2-cuda-merged-12.8/bin/nvcc"
-  ]
