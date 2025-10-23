@@ -18,8 +18,6 @@ in
           theme = "catppuccin";
         };
 
-        # tab line
-        tabline.nvimBufferline.enable = true;
       };
     };
 }
