@@ -8,9 +8,6 @@ in
     {
       # packages
       environment.systemPackages = with pkgs; [
-        # lsp
-        clang-tools
-
         # compiler
         gcc15
         llvmPackages.clang

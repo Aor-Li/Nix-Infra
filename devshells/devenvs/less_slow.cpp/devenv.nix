@@ -18,6 +18,7 @@
     pkgs.ninja
     pkgs.gnumake
 
+    pkgs.llvmPackages.openmp
     pkgs.cudaPackages.cuda_cudart
     pkgs.cudaPackages.cudatoolkit
 

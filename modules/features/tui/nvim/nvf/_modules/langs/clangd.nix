@@ -8,12 +8,14 @@ in
     {
       programs.nvf.settings.vim.languages.clang = {
         enable = true;
-        cHeader = true;
-
         lsp.enable = true;
-        treesitter.enable = true;
 
-        
+        # dap
+        dap.enable = true;
+
+        # others
+        treesitter.enable = true;
+        cHeader = true; # enable .h files support
       };
     };
 }
