@@ -5,55 +5,64 @@ in
 {
   flake.modules.homeManager.${name} = {
     programs.nvf.settings.vim = {
-      # basic options
-      options.tabstop = 2;
-      options.shiftwidth = 2;
-      options.shiftround = true;
-      options.autoindent = true;
-      options.expandtab = true;
-      options.smartindent = true;
-      options.breakindent = true;
+      options = {
+        # indentation
+        tabstop = 2;
+        shiftwidth = 2;
+        shiftround = true;
+        autoindent = true;
+        expandtab = true;
+        smartindent = true;
+        breakindent = true;
 
-      # line and basic sign
-      options.number = true;
-      options.relativenumber = true;
-      options.signcolumn = "yes";
-      options.termguicolors = true;
+        # line and basic sign
+        number = true;
+        relativenumber = true;
+        signcolumn = "yes";
+        termguicolors = true;
 
-      # search
-      options.ignorecase = true;
-      options.smartcase = true;
-      options.hlsearch = true;
-      options.incsearch = true;
+        # search
+        ignorecase = true;
+        smartcase = true;
+        hlsearch = true;
+        incsearch = true;
 
-      # interactive
-      options.updatetime = 200;
-      options.timeoutlen = 300;
-      options.scrolloff = 4;
-      options.sidescrolloff = 8;
-      options.splitright = true;
-      options.splitbelow = true;
-      options.splitkeep = "screen";
-      options.undofile = true;
-      options.swapfile = false;
-      options.backup = false;
+        # interactive
+        updatetime = 200;
+        timeoutlen = 300;
+        scrolloff = 4;
+        sidescrolloff = 8;
+        splitright = true;
+        splitbelow = true;
+        splitkeep = "screen";
+        undofile = true;
+        swapfile = false;
+        backup = false;
 
-      # symbols
-      options.list = true; # Show some invisible characters
-      options.listchars = "tab:▸ ,trail:·,extends:»,precedes:«,nbsp:␣";
+        # symbols
+        list = true;
+        listchars = "tab:▸ ,trail:·,extends:»,precedes:«,nbsp:␣";
 
-      # something else
-      options.mouse = "a";
-      options.wrap = false;
+        # extras
+        confirm = true;
+        pumheight = 10;
+        completeopt = "menu,menuone,noselect";
+        foldenable = false;
+        grepprg = "rg --vimgrep --no-heading --smart-case"; # if ripgrep available
 
-      # leader key
+        # others
+        mouse = "a";
+        wrap = false;
+        showmode = false;
+        encoding = "utf-8";
+      };
+
       globals.mapleader = " ";
-      globals.maplocalleader = ",";
+      globals.maplocalleader = "\\";
 
-      # clip board
       clipboard.enable = true;
       clipboard.providers.xsel.enable = true;
-      # use wl-copy for wayland
+      # Wayland 主机覆盖开启：
       # clipboard.providers.wl-copy.enable = true;
     };
   };
