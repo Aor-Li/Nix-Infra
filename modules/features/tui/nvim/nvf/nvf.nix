@@ -9,8 +9,8 @@ in
     ];
 
     programs.nvf = {
-      enable = true;
-      enableManpages = true;
+      enable = false;
+      enableManpages = false;
     };
   };
 }
