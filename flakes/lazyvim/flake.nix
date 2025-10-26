@@ -193,7 +193,7 @@
       packageDefinitions = {
         # These are the names of your packages
         # you can include as many as you wish.
-        lazyvim =
+        nvim =
           {
             pkgs,
             name,
@@ -243,7 +243,7 @@
       };
       # In this section, the main thing you will need to do is change the default package name
       # to the name of the packageDefinitions entry you wish to use as the default.
-      defaultPackageName = "lazyvim";
+      defaultPackageName = "nvim";
     in
 
     # see :help nixCats.flake.outputs.exports

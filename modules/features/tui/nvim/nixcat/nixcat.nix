@@ -8,7 +8,7 @@ in
       { config, pkgs, ... }:
       {
         imports = [ inputs.lazyvim.homeModules.default ];
-        lazyvim.enable = true;
+        nvim.enable = true;
       };
   };
 }
