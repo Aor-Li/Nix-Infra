@@ -9,8 +9,11 @@ in
       # packages
       environment.systemPackages = with pkgs; [
         # compiler
-        gcc15
+        gcc
         llvmPackages.clang
+
+        # lsp
+        llvmPackages.clang-tools
 
         # build tools
         cmake
@@ -22,5 +25,15 @@ in
         gdb
         ldb
       ];
+    };
+
+  flake.modules.homeManager.${name} =
+    { pkgs, ... }:
+    {
+      xdg.configFile."clangd/config.yaml".text = ''
+        CompileFlags:
+          CompilationDatabase: Ancestors
+          BuiltinHeaders: QueryDriver
+      '';
     };
 }
