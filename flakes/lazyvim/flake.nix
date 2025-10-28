@@ -132,6 +132,7 @@
               }
               # you could do this within the lazy spec instead if you wanted
               # and get the new names from `:NixCats pawsible` debug command
+              indent-blankline-nvim
             ];
           };
 
