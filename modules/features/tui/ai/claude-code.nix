@@ -1,36 +1,49 @@
-{inputs, ...}: let
+{ inputs, ... }:
+let
   name = "feature/tui/ai/claude-code";
-in {
-  flake.modules = {
-    nixos.${name} = {pkgs, ...}: {
-      environment.systemPackages = with inputs.nix-ai-tools.packages.${pkgs.system}; [
-        claude-code
+in
+{
+  flake.modules.homeManager.${name} =
+    { config, pkgs, ... }:
+    let
+      # config api
+      clauddy_url = "https://claudecode.dpdns.org/api";
+      hw_url = "http://api.anthropic.rnd.huawei.com";
+      hw_token = "sk-1234";
+
+      # config model
+      model = "glm-4.5-air";
+      small_model = "qwen3-coder-30b-a3b-instruct";
+    in
+    {
+      # packages
+      home.packages = [
+        pkgs.nodejs_24
+        inputs.nix-ai-tools.packages.${pkgs.system}.claude-code
       ];
-    };
-    homeManager.${name} = {...}: {
-      home.file.".claude/settings.json".text = ''
+
+      # secret key
+      sops.secrets.anthropic_auth_token = {
+        path = "%r/secrets/anthropic_auth_token.txt";
+      };
+
+      # configurations
+      home.file.".claude/config.yaml".text = ''
         {
-          "env": {
-            "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
-            "DISABLE_ERROR_REPORTING": "1",
-            "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
-            "DISABLE_TELEMETRY": "1",
-            "ANTHROPIC_AUTH_TOKEN": "sk-1234",
-            "ANTHROPIC_BASE_URL": "http://api.anthropic.rnd.huawei.com",
-            "ANTHROPIC_MODEL": "glm-4.5-air",
-            "ANTHROPIC_SMALL_FAST_MODEL": "qwen3-coder-30b-a3b-instruct"
-          }
+          "primaryApiKey": "crs"
         }
       '';
 
-      # home.file.".claude/settings.json".text = ''
-      #  {
-      # "env": {
-      # "ANTHROPIC_BASE_URL": "https://claudecode.dpdns.org/api",
-      # "ANTHROPIC_AUTH_TOKEN": "cr_fa9d461c3831422bcaa9d7b8c776f4ad0a46aa6a751a9c8345fc4e72917a677a"
-      # }
-      # }
-      #'';
+      # settings
+      # NOTE: sops.templates replace placeholder at system activation time
+      sops.templates."%r/claude/settings.json" = {
+        content = builtins.toJSON {
+          env = {
+            ANTHROPIC_BASE_URL = clauddy_url;
+            ANTHROPIC_AUTH_TOKEN = config.sops.placeholder.anthropic_auth_token;
+          };
+        };
+        path = "${config.home.homeDirectory}/.claude/settings.json";
+      };
     };
-  };
 }
