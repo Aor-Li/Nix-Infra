@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   networking.proxy = {
-    default = "http://l00809570:lyfwrsnm123!@proxyhk.huawei.com:8080";
+    default = "http://l00809570:lyf19940126!@proxyhk.huawei.com:8080";
     noProxy = "127.0.0.1,.huawei.com,.inhuawei.com,10.,100.";
   };
 
