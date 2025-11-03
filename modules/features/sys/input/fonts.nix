@@ -9,7 +9,6 @@ in
       fonts.packages = with pkgs; [
         # notos
         noto-fonts
-        noto-fonts-extra
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
 
