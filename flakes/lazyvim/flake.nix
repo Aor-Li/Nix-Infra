@@ -52,6 +52,7 @@
               lua-language-server
               nil # I would go for nixd but lazy chooses this one idk
               stylua
+              pyright
             ];
           };
 
