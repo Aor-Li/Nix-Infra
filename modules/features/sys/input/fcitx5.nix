@@ -33,11 +33,15 @@ in
         XMODIFIERS = "@im=fcitx";
       };
 
-      programs.bash.initExtra = ''
-        # start fcitx5 in bash if it is not started yet
-        if ! pgrep -af "fcitx5" | grep -v grep > /dev/null; then
-          nohup fcitx5 -d --replace > /dev/null 2>&1 &
-        fi
-      '';
+      services.fcitx5 = {
+        enable = true;
+        waylandFrontend = true;
+      };
+      # programs.bash.initExtra = ''
+      #   # start fcitx5 in bash if it is not started yet
+      #   if ! pgrep -af "fcitx5" | grep -v grep > /dev/null; then
+      #     nohup fcitx5 -d --replace > /dev/null 2>&1 &
+      #   fi
+      # '';
     };
 }
