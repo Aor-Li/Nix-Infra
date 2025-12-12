@@ -11,34 +11,43 @@
 }:
 let
   prefix = "user/";
+
+  mkHomeManagerConfig =
+    {
+      username,
+      hostname,
+      module,
+    }:
+    let
+      userConfig = config.flake.meta.users.${username};
+      hostConfig = config.flake.meta.hosts.${hostname};
+      system = hostConfig.system;
+    in
+    {
+      name = "${username}@${hostname}";
+      value = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+        modules = [
+          module
+        ];
+        extraSpecialArgs = {
+          inherit userConfig hostConfig;
+        };
+      };
+    };
 in
 {
   flake.homeConfigurations =
     config.flake.modules.homeManager or { }
     |> lib.filterAttrs (name: _module: lib.hasPrefix prefix name)
-    |> lib.mapAttrs' (
+    |> lib.mapAttrsToList (
       name: module:
       let
         username = lib.removePrefix prefix name;
+        hostnames = config.flake.meta.users.${username}.hosts;
       in
-      {
-        name = username;
-        value = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux"; # TODO: This line needs to be moved to configure individually for each machine
-          modules = [
-            module
-            {
-              options.infra = lib.mkOption {
-                type = lib.types.submodule { };
-                default = { };
-                description = "Infrastructure configuration options for home-manager.";
-              };
-            }
-          ];
-          extraSpecialArgs = {
-            userConfig = config.flake.meta.user.${username};
-          };
-        };
-      }
-    );
+      map (hostname: mkHomeManagerConfig { inherit username hostname module; }) hostnames
+    )
+    |> lib.flatten
+    |> lib.listToAttrs;
 }

@@ -1,10 +1,10 @@
 { config, ... }:
 let
-  flake.modules.nixos."host/desktop" =
+  flake.modules.nixos."machine/wsl" =
     { hostConfig, ... }:
     {
       imports = [
-        config.flake.modules.nixos."host/common"
+        config.flake.modules.nixos."machine/common"
       ];
     };
 in

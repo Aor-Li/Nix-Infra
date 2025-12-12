@@ -10,7 +10,7 @@
   ...
 }:
 let
-  prefix = "machine/";
+  prefix = "host/";
 in
 {
   flake.nixosConfigurations =
@@ -19,10 +19,10 @@ in
     |> lib.mapAttrs' (
       name: module:
       let
-        machine = lib.removePrefix prefix name;
+        host = lib.removePrefix prefix name;
       in
       {
-        name = machine;
+        name = host;
         value = inputs.nixpkgs.lib.nixosSystem {
           modules = [
             module
@@ -35,7 +35,7 @@ in
             }
           ];
           specialArgs = {
-            hostConfig = config.flake.meta.machine.${machine} or { };
+            hostConfig = config.flake.meta.hosts.${host} or { };
           };
         };
       }

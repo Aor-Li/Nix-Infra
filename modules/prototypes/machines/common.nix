@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  flake.modules.nixos."host/common" =
+  flake.modules.nixos."machine/common" =
     { ... }:
     {
       imports = [

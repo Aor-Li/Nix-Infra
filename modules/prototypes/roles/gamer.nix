@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  flake.modules.homeManager."home/gamer" =
+  flake.modules.homeManager."role/gamer" =
     { ... }:
     {
       imports = [ ];

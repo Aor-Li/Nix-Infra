@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  flake.modules.homeManager."home/common" =
+  flake.modules.homeManager."role/common" =
     { options, lib, ... }:
     {
       imports = [

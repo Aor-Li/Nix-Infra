@@ -1,18 +1,19 @@
 { config, ... }:
 let
   flake = {
-    modules.nixos."machine/Chimi" = {
+    modules.nixos."host/Chimi" = {
       imports = [
-        config.flake.modules.nixos."host/server"
+        config.flake.modules.nixos."machine/server"
         ./_specifics/hardware-configuration.nix
       ];
       nixpkgs.hostPlatform.system = "x86_64-linux";
     };
 
-    meta.machine.Chimi = {
+    meta.hosts.Chimi = {
       name = "Chimi";
       description = "Chimi is a nixos server running in a mini-pc at home.";
       type = "server";
+      system = "x86_64-linux";
       owner = {
         name = "Aor-Li";
         username = "aor";

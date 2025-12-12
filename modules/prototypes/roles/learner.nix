@@ -1,7 +1,7 @@
 { config, ... }:
 let
-  flake.modules.homeManager."home/coder" =
-    { ... }:
+  flake.modules.homeManager."role/learner" =
+    { options, lib, ... }:
     {
       imports = [
       ];
