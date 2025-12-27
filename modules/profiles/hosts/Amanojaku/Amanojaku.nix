@@ -1,7 +1,7 @@
 { config, ... }:
 let
   flake = {
-    modules.nixos."machine/Amanojaku" =
+    modules.nixos."host/Amanojaku" =
       { ... }:
       {
         imports = [
