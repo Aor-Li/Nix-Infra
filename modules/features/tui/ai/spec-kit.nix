@@ -4,7 +4,7 @@ let
 in 
 {
   flake.modules.homeManager.${name} = 
-    { ... }:
+    { pkgs, ... }:
     {
       home.packages = [
         inputs.nix-ai-tools.packages.${pkgs.system}.spec-kit
