@@ -45,5 +45,10 @@ in
         };
         path = "${config.home.homeDirectory}/.claude/settings.json";
       };
+      
+      home.sessionVariables = {
+        ANTHROPIC_BASE_URL = clauddy_url;
+        ANTHROPIC_AUTH_TOKEN = config.sops.placeholder.anthropic_auth_token;
+      };
     };
 }
