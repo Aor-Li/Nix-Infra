@@ -6,6 +6,11 @@ in
   flake.modules.homeManager.${name} =
     { ... }:
     {
-      programs.direnv.enable = true;
+      programs.direnv = {
+        enable = true;
+        enableBashIntegration = true;
+        enableFishIntegration = true;
+        nix-direnv.enable = true;
+      };
     };
 }
