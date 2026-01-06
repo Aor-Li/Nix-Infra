@@ -14,20 +14,21 @@ This is a multi-user, multi-machine Nix infrastructure monorepo using flake-part
 ### Directory Structure
 - **`/modules`**: Auto-imported modules (key architecture):
   - `metas/flake-parts/`: flake-parts framework setup
-  - `metas/framework/`: Framework definitions
-  - `features/`: Feature-specific modules (packages, services, UI tools)
-  - `prototypes/homes/`: Home-manager configuration templates
-  - `prototypes/hosts/`: NixOS configuration templates
-  - `profiles/machines/`: Machine-specific configurations (Amanojaku, Bakotsu, Chimi)
-  - `profiles/users/`: User-specific configurations
-- **`/flakes`**: Custom flake definitions
+  - `metas/framework/`: Framework definitions (nixosConfigurations from `host/*`, homeConfigurations from `user/*`)
+  - `metas/lib/`: Utilities like `isDirectSubmodule` for hierarchical module detection
+  - `features/`: Feature-specific modules (nix, sys, tui, dev, gui, app)
+  - `prototypes/machines/`: Machine templates (common, wsl, desktop, server)
+  - `prototypes/roles/`: User role templates (common, coder, gamer, learner)
+  - `profiles/hosts/`: Concrete machine configurations (Amanojaku, Bakotsu, Chimi)
+  - `profiles/users/`: Concrete user configurations
+- **`/flakes`**: Custom flake definitions (e.g., lazyvim using nixCats)
 - **`/overlays`**: Custom package overlays
 - **`/devshells`**: Development environments (uses devenv.io)
 
 ### Build System
 - **Entry Point**: `flake.nix` imports all modules via `inputs.import-tree ./modules`
 - **Auto-Import**: All Nix files in `modules/` are automatically integrated
-- **Module Naming**: Hierarchical naming organizes system structure (e.g., `features/tui/nvim`, `profiles/machines/Amanojaku`)
+- **Config Generation**: Framework builds `nixosConfigurations` from `host/*` modules and `homeConfigurations` from `user/*` modules
 
 ## Common Commands
 
@@ -75,25 +76,48 @@ nix build .#nixosConfigurations.Amanojaku-system-gpu.config.system.build.topleve
 
 ## Module System Patterns
 
-### Module Creation
-- All modules must be placed in `/modules`
-- Naming follows hierarchical system: `{category}/{subcategory}/{name}.nix`
-- Example: `features/tui/nvim/nvf.nix`, `profiles/machines/Amanojaku/configuration.nix`
+### Module Naming Convention
+```
+feature/{category}/{name}     -> features/{category}/{name}.nix
+host/{hostname}               -> profiles/hosts/{hostname}/{hostname}.nix
+user/{username}               -> profiles/users/{username}/{username}.nix
+machine/{type}                -> prototypes/machines/{type}.nix
+role/{type}                   -> prototypes/roles/{type}.nix
+```
 
-### Feature Modules
-- Prefix: `features/` for reusable functionality
-- Example features: `tui` (terminal UI), `networking`, `development`
-- Each feature can depend on other features and framework components
+### Feature Module Pattern
+Features register into `flake.modules.nixos` and/or `flake.modules.homeManager`:
 
-### Prototype Modules
-- `prototypes/homes/`: Reusable home-manager configurations
-- `prototypes/hosts/`: Reusable NixOS configurations
-- These are templates combined with specific features
+```nix
+{ ... }:
+let
+  name = "feature/nix/nh";
+in
+{
+  flake.modules.nixos.${name} = { ... }: {
+    programs.nh.enable = true;
+  };
+  flake.modules.homeManager.${name} = { ... }: {
+    home.shellAliases.nos = "nh os switch .";
+  };
+}
+```
 
-### Profile Modules
-- `profiles/machines/`: Concrete machine configurations
-- `profiles/users/`: Concrete user configurations
-- Profiles combine prototypes and features into specific deployments
+### Special Arguments
+- **`hostConfig`**: Access machine metadata (e.g., `hostConfig.type` for WSL detection)
+- **`userConfig`**: Access user metadata (e.g., `userConfig.hosts` for target machines)
+
+### Hierarchical Aggregation
+Parent modules use `isDirectSubmodule` to auto-import immediate children:
+```nix
+isDirectSubmodule = module: sub:
+  lib.hasPrefix "${module}/" sub &&
+  !(lib.hasInfix "/" (lib.strings.removePrefix "${module}/" sub));
+```
+
+### Prototype vs Profile
+- **Prototypes** (`machine/*`, `role/*`): Reusable templates that import feature sets
+- **Profiles** (`host/*`, `user/*`): Concrete configurations that import prototypes and add specifics
 
 ## Important Context
 

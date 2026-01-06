@@ -3,8 +3,9 @@ let
   name = "feature/nix/nh";
 in
 {
-  flake.modules = {
-    nixos.${name} = {
+  flake.modules.nixos.${name} = 
+    { ... }:
+    {
       programs.nh = {
         enable = true;
         clean.enable = true;
@@ -12,5 +13,13 @@ in
         flake = "/home/aor/configs/infra";
       };
     };
-  };
+
+  flake.modules.homeManager.${name} = 
+    { ... }:
+    {
+      home.shellAliases = {
+        nos = "nh os switch .";
+        nhs = "nh home switch .";
+      };
+    };
 }
