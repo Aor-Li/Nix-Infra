@@ -1,11 +1,15 @@
-{ ... }:
+{ inputs, ... }:
 let
-  name = "feature/desktop/sway";
+  name = "feature/desktop/niri";
 in
 {
-  flake.modules.homeManager.${name} = 
-    { pkgs, ... }: 
+  flake.modules.homeManager.${name} =
+    { pkgs, ... }:
     {
-      programs.niri.enable = true;
+      imports = [ inputs.niri.homeModules.niri ];
+
+      programs.niri = {
+        enable = true;
+      };
     };
 }
