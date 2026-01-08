@@ -11,6 +11,7 @@ let
         config.flake.modules.homeManager."feature/gui"
         config.flake.modules.homeManager."feature/app"
         config.flake.modules.homeManager."feature/dev"
+        config.flake.modules.homeManager."feature/desktop"
       ];
     };
 in
