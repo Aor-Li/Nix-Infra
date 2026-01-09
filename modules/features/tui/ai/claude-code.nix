@@ -8,12 +8,12 @@ in
     let
       # config api
       clauddy_url = "https://claudecode.dpdns.org/api";
-      hw_url = "http://api.anthropic.rnd.huawei.com";
-      hw_token = "sk-1234";
 
-      # config model
-      model = "glm-4.5-air";
-      small_model = "qwen3-coder-30b-a3b-instruct";
+      # huawei settings
+      # hw_url = "http://api.anthropic.rnd.huawei.com";
+      # hw_token = "sk-1234";
+      # model = "glm-4.5-air";
+      # small_model = "qwen3-coder-30b-a3b-instruct";
     in
     {
       # packages
