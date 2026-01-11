@@ -1,19 +1,18 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
   name = "feature/ai/claude/hw";
+  moduleConfig = config.flake.meta.modules."feature/ai/claude";
 in
 {
-  config.flake.modules.homeManager.${name} =
-    { config, lib, flakeConfig, ... }:
+  flake.modules.homeManager.${name} =
+    { lib, hostConfig, ... }:
     let
-      claude_config = flakeConfig."feature/ai/claude";
-
       ANTHROPIC_AUTH_TOKEN = "sk-1234";
       ANTHROPIC_API_KEY = "";
       ANTHROPIC_BASE_URL = "http://api.antropic/rnd.huawei.com";
     in
     {
-      home = lib.mkIf (claude_config.provider == "hw") {
+      home = lib.mkIf (moduleConfig.providers.${hostConfig.name} == "hw") {
         sessionVariables = {
           inherit ANTHROPIC_AUTH_TOKEN ANTHROPIC_API_KEY ANTHROPIC_BASE_URL;
         };

@@ -106,6 +106,38 @@ in
 ### Special Arguments
 - **`hostConfig`**: Access machine metadata (e.g., `hostConfig.type` for WSL detection)
 - **`userConfig`**: Access user metadata (e.g., `userConfig.hosts` for target machines)
+- **`flakeConfig`**: Access global module options defined in `flake.moduleOptions`
+- **`instanceConfig`**: Access per-user per-host configuration from `flake.instanceConfig`
+
+### Instance Configuration Pattern
+For per-user per-host specific settings, use `flake.instanceConfig`:
+
+```nix
+{ config, lib, ... }:
+let
+  name = "feature/example";
+  users = builtins.attrNames (config.flake.meta.users or {});
+in
+{
+  # Set instance-specific defaults
+  config.flake.instanceConfig = lib.genAttrs users (username:
+    let
+      userHosts = config.flake.meta.users.${username}.hosts or [];
+    in
+    lib.genAttrs userHosts (hostname: {
+      example.setting = "value-for-${hostname}";
+    })
+  );
+
+  # Use in module implementation
+  flake.modules.homeManager.${name} =
+    { instanceConfig, ... }:
+    {
+      # instanceConfig contains the merged config for this user@host
+      home.sessionVariables.EXAMPLE = instanceConfig.example.setting or "default";
+    };
+}
+```
 
 ### Hierarchical Aggregation
 Parent modules use `isDirectSubmodule` to auto-import immediate children:

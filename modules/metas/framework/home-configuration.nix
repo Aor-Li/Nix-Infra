@@ -1,23 +1,13 @@
-/*
-  Create home-manager configurations：
-    - modules：flake.modules.homeManager.${user}, which is defined in modules/profiles/users/${user}
-    - setting: flake.meta.user.${user}, which will be passed to all homeManager modules as userConfig
-*/
-{
-  config,
-  inputs,
-  lib,
-  ...
-}:
+{ config, inputs, lib, ... }:
 let
   prefix = "user/";
 
   mkHomeManagerConfig =
-    { username, hostname, module, }:
+    { username, hostname, module }:
     let
       userConfig = config.flake.meta.users.${username};
       hostConfig = config.flake.meta.hosts.${hostname};
-      flakeConfig = config.flake.moduleOptions;
+      moduleConfig = config.flake.meta.modules;
       system = hostConfig.system;
     in
     {
@@ -28,7 +18,7 @@ let
           module
         ];
         extraSpecialArgs = {
-          inherit inputs userConfig hostConfig flakeConfig ;
+          inherit inputs userConfig hostConfig moduleConfig;
         };
       };
     };
@@ -43,7 +33,7 @@ in
         username = lib.removePrefix prefix name;
         hostnames = config.flake.meta.users.${username}.hosts;
       in
-      map (hostname: mkHomeManagerConfig { inherit username hostname module; }) hostnames
+        map (hostname: mkHomeManagerConfig { inherit username hostname module; }) hostnames
     )
     |> lib.flatten
     |> lib.listToAttrs;

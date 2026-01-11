@@ -9,6 +9,7 @@ let
         ];
         nixpkgs.hostPlatform.system = "x86_64-linux";
       };
+
     meta.hosts.Amanojaku = {
       name = "Amanojaku";
       description = "Amanojaku is a wsl nixos system on my win11 pc with nvdia gpu.";
@@ -20,6 +21,7 @@ let
         email = "liyifeng0039@gmail.com";
       };
     };
+    
   };
 in
 {

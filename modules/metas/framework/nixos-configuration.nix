@@ -1,16 +1,32 @@
-/*
-  Create NixOS configurations:
-    - modules: flake.modules.nixos.${machine}, which is defined in modules/profiles/machines/${machine}
-    - setting: flake.meta.machine.${machine}, which will be passed to all NixOS modules as hostConfig
-*/
-{
-  config,
-  inputs,
-  lib,
-  ...
-}:
+{ config, inputs, lib, ... }:
 let
   prefix = "host/";
+
+  mkNixosConfig = 
+    { hostname, module }:
+    let
+      hostConfig = config.flake.meta.hosts.${hostname};
+      moduleConfig = config.flake.meta.modules;
+    in
+    {
+      name = hostname;
+      value = inputs.nixpkgs.lib.nixosSystem {
+        modules = [
+          module
+          # [FIXME]: 下面配置我已经忘了作用，不需要的话就删掉
+          # {
+          #   options.infra = lib.mkOption {
+          #     type = lib.types.submodule { };
+          #     default = { };
+          #     description = "Infrastructure configuration options for nixos.";
+          #   };
+          # }
+        ];
+        specialArgs = {
+          inherit hostConfig moduleConfig;
+        };
+      };
+    };
 in
 {
   flake.nixosConfigurations =
@@ -19,25 +35,8 @@ in
     |> lib.mapAttrs' (
       name: module:
       let
-        host = lib.removePrefix prefix name;
+        hostname = lib.removePrefix prefix name;
       in
-      {
-        name = host;
-        value = inputs.nixpkgs.lib.nixosSystem {
-          modules = [
-            module
-            {
-              options.infra = lib.mkOption {
-                type = lib.types.submodule { };
-                default = { };
-                description = "Infrastructure configuration options for nixos.";
-              };
-            }
-          ];
-          specialArgs = {
-            hostConfig = config.flake.meta.hosts.${host} or { };
-          };
-        };
-      }
+        mkNixosConfig { inherit hostname module; }
     );
 }
