@@ -13,14 +13,11 @@ let
   prefix = "user/";
 
   mkHomeManagerConfig =
-    {
-      username,
-      hostname,
-      module,
-    }:
+    { username, hostname, module, }:
     let
       userConfig = config.flake.meta.users.${username};
       hostConfig = config.flake.meta.hosts.${hostname};
+      flakeConfig = config.flake.moduleOptions;
       system = hostConfig.system;
     in
     {
@@ -31,7 +28,7 @@ let
           module
         ];
         extraSpecialArgs = {
-          inherit userConfig hostConfig;
+          inherit inputs userConfig hostConfig flakeConfig ;
         };
       };
     };
