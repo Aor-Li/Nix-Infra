@@ -1,7 +1,11 @@
 { config, inputs, ... }:
 let
   name = "feature/ai/claude";
-  
+  subModules = [
+    config.flake.modules.homeManager."${name}/hw"
+    config.flake.modules.homeManager."${name}/clauddy"
+  ];
+
   flake.meta.modules.${name} = {
     providers = {
       "Amanojaku" = "clauddy";
@@ -9,10 +13,11 @@ let
       "Chimi" = "clauddy";     
     };
   };
-
   flake.modules.homeManager.${name} =
     { config, pkgs, lib, ... }:
     {
+      imports = subModules;
+
       options.modules.homeManager.${name}.enable = lib.mkOption {
         type = lib.types.bool;
         default = true;
@@ -25,9 +30,7 @@ let
         ];
 
         file.".claude/config.yaml".text = ''
-          {
-            "primaryApiKey": "crs",
-          }
+          primaryApiKey: "crs"
         '';
       };
     };

@@ -5,7 +5,7 @@ let
 in
 {
   flake.modules.homeManager.${name} =
-    { hostConfig, ... }:
+    { config, hostConfig, ... }:
     let
       clauddyUrl = "https://claudecode.dpdns.org/api";
     in
