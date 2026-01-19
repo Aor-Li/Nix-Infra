@@ -10,11 +10,16 @@ let
     providers = {
       "Amanojaku" = "clauddy";
       "Bakotsu" = "hw";
-      "Chimi" = "clauddy";     
+      "Chimi" = "clauddy";
     };
   };
   flake.modules.homeManager.${name} =
-    { config, pkgs, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     {
       imports = subModules;
 

@@ -4,10 +4,15 @@ let
 in
 {
   flake.modules.nixos.${name} =
-    { pkgs, lib, config, ... }:
+    {
+      pkgs,
+      lib,
+      hostConfig,
+      ...
+    }:
     {
       # frp client service
-      services.frp = {
+      services.frp = lib.mkIf (hostConfig.name != "Bakotsu") {
         enable = true;
         role = "client";
         settings = {
@@ -32,9 +37,9 @@ in
     };
 
   flake.modules.homeManager.${name} =
-    { ... }:
+    { lib, hostConfig, ... }:
     {
-      home.shellAliases = {
+      home.shellAliases = lib.mkIf (hostConfig.name != "Bakotsu") {
         frp-status = "sudo systemctl status frp";
         frp-restart = "sudo systemctl restart frp";
         frp-logs = "sudo journalctl -u frp -f";
