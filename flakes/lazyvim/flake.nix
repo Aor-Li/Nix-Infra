@@ -9,6 +9,13 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
+
+    # [TODO]: 这是一个更新兼容性处理，后续删除并启用稳定版本
+    # Updated nvim-treesitter-textobjects compatible with nvim-treesitter 0.10+
+    nvim-treesitter-textobjects = {
+      url = "github:nvim-treesitter/nvim-treesitter-textobjects/main";
+      flake = false;
+    };
   };
 
   outputs =
@@ -28,6 +35,16 @@
 
       dependencyOverlays = [
         (utils.standardPluginOverlay inputs)
+        # Fix nvim-treesitter-textobjects: use latest version compatible with nvim-treesitter 0.10+
+        (final: prev: {
+          vimPlugins = prev.vimPlugins // {
+            nvim-treesitter-textobjects = prev.vimPlugins.nvim-treesitter-textobjects.overrideAttrs (oldAttrs: {
+              version = "0-unstable-latest";
+              src = inputs.nvim-treesitter-textobjects;
+              doCheck = false;
+            });
+          };
+        })
       ];
 
       categoryDefinitions =

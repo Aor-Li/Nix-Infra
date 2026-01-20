@@ -31,10 +31,28 @@
         "type": "github"
       }
     },
+    "nvim-treesitter-textobjects": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768784270,
+        "narHash": "sha256-uLugBNNJUqu4zEtPB2fy+abEOORnsmrznGy8VIvC9bQ=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-textobjects",
+        "rev": "4d55f63252e04c5212daed958e4e940915ff16ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "ref": "main",
+        "repo": "nvim-treesitter-textobjects",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nvim-treesitter-textobjects": "nvim-treesitter-textobjects"
       }
     }
   },
