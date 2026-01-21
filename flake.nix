@@ -29,6 +29,9 @@
     nvf.url = "github:NotAShelf/nvf";
     nvf.inputs.nixpkgs.follows = "nixpkgs";
 
+    # devenv
+    devenv.url = "github:cachix/devenv";
+
     # ai
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
 
