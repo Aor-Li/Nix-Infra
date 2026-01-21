@@ -24,6 +24,10 @@
     # dms
     dms.url = "github:AvengeMedia/DankMaterialShell";
     dms.inputs.nixpkgs.follows = "nixpkgs";
+    
+    # noctalia
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
 
     # nvf
     nvf.url = "github:NotAShelf/nvf";
