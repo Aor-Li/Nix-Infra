@@ -1,4 +1,3 @@
-# This module most basic neovim settings
 let
   name = "feature/tui/nvim/nvf";
 in
@@ -62,6 +61,7 @@ in
 
       clipboard.enable = true;
       clipboard.providers.xsel.enable = true;
+      
       # Wayland 主机覆盖开启：
       # clipboard.providers.wl-copy.enable = true;
     };
