@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/tui/dev/devenv";
+  name = "feature/dev/devenv";
 in
 {
   flake.modules.homeManager.${name} =
