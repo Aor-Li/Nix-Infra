@@ -1,6 +1,6 @@
 { ... }:
 let
-  name = "feature/dev/env/direnv";
+  name = "feature/dev/direnv";
 in
 {
   flake.modules.homeManager.${name} =
