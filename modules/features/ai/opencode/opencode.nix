@@ -10,7 +10,6 @@ in
         inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
       ];
 
-      xdg.configFile."opencode/opencode.jsonc".source =
-        "${config.flake.meta.root}/modules/features/ai/opencode/opencode.jsonc";
+      xdg.configFile."opencode/opencode.jsonc".source = ./opencode.jsonc;
     };
 }
