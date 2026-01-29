@@ -1,0 +1,3 @@
+{
+  flake.meta.root = "~/infra";
+}

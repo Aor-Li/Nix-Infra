@@ -24,7 +24,7 @@
     # dms
     dms.url = "github:AvengeMedia/DankMaterialShell";
     dms.inputs.nixpkgs.follows = "nixpkgs";
-    
+
     # noctalia
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
@@ -37,6 +37,7 @@
     devenv.url = "github:cachix/devenv";
 
     # ai
+    llm-agents.url = "github:numtide/llm-agents.nix";
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
 
     # nix utilities
