@@ -4,14 +4,15 @@ let
   featurePath = [
     "myConfig"
     "features"
-    "git"
+    "nvim"
   ];
 
   # ============================================================================
-  # 1. 纯粹的实现逻辑 (Implementations)
+  # 1. 底层实现 (Implementations) - 保持不变，还是做逻辑路由
   # ============================================================================
-  # 它们完全不知道 Flake 的存在，只通过 myConfig 交互。
-  # 它们定义了自己的 options，不依赖外部。
+  # 这里不需要改动，因为我们假设下面的 Public Part 已经把 options 注入进来了
+
+  isBackend = cfg: name: (cfg.enable && cfg.backend == name);
 
   nixosImpl =
     {
@@ -25,15 +26,24 @@ let
     in
     {
       options = lib.setAttrByPath featurePath {
-        enable = lib.mkEnableOption "Git system implementation";
-        defaultBranch = lib.mkOption {
-          type = lib.types.str;
-          default = "main";
+        enable = lib.mkEnableOption "Neovim Meta-Feature (System)";
+        backend = lib.mkOption {
+          type = lib.types.enum [
+            "nixvim"
+            "nvf"
+            "nixcat"
+          ];
+          default = "nixvim";
         };
       };
+
       config = lib.mkIf cfg.enable {
-        environment.systemPackages = [ pkgs.git ];
-        programs.git.config.init.defaultBranch = cfg.defaultBranch;
+        # 这里的赋值现在是安全的，因为 options 已经被 Public Part 带进来了
+        myConfig.features.nixvim.enable = isBackend cfg "nixvim";
+        myConfig.features.nvf.enable = isBackend cfg "nvf";
+        myConfig.features.nixcat.enable = isBackend cfg "nixcat";
+
+        environment.variables.EDITOR = "nvim";
       };
     };
 
@@ -44,79 +54,107 @@ let
     in
     {
       options = lib.setAttrByPath featurePath {
-        enable = lib.mkEnableOption "Git user implementation";
-        # Home Manager 可以有自己独立的配置项，也可以复用结构
+        enable = lib.mkEnableOption "Neovim Meta-Feature (User)";
+        backend = lib.mkOption {
+          type = lib.types.enum [
+            "nixvim"
+            "nvf"
+            "nixcat"
+          ];
+          default = "nixvim";
+        };
       };
+
       config = lib.mkIf cfg.enable {
-        programs.git.enable = true;
+        myConfig.features.nixvim.enable = isBackend cfg "nixvim";
+        myConfig.features.nvf.enable = isBackend cfg "nvf";
+        myConfig.features.nixcat.enable = isBackend cfg "nixcat";
       };
     };
 
   # ============================================================================
-  # 2. 公共部分 (Public Part) - 负责转换和导出
+  # 2. 公共部分 (Public Part) - 【关键修改点】
   # ============================================================================
   publicPart =
-    { config, lib, ... }:
     {
-      # 2.1 定义 Flake 级选项 (控制总开关)
-      options.myFlake.features.git = {
-        enable = lib.mkEnableOption "Git global trigger";
-        defaultBranch = lib.mkOption {
-          type = lib.types.str;
-          default = "main";
+      config,
+      lib,
+      self,
+      ...
+    }:
+    {
+      # 注意这里添加了 self
+
+      options.myFlake.features.nvim = {
+        enable = lib.mkEnableOption "Enable Neovim globally";
+        backend = lib.mkOption {
+          type = lib.types.enum [
+            "nixvim"
+            "nvf"
+            "nixcat"
+          ];
+          default = "nixvim";
         };
       };
 
       config.flake = {
-        # 【关键点】导出时，我们捕捉当前的 flakeCfg 值并注入
-        # 这利用了 Nix 的闭包特性：flakeCfg 在这里被求值并“锁”进了下面的函数中
-
-        nixosModules.git =
+        # 2.2 导出 NixOS 模块 (Bundle)
+        nixosModules.nvim =
           let
-            # 在这里“固化” Flake 层的配置
-            flakeCfg = config.myFlake.features.git;
+            flakeCfg = config.myFlake.features.nvim;
           in
           { ... }:
           {
-            imports = [ nixosImpl ];
-            # 注入逻辑：将 Flake 的值作为 module 的默认值传入
-            # 这样 NixOS 模块内部不需要访问 Flake config，它只看到 options 被设置了
+            # 【核心修正】：在这里通过 self 引用兄弟模块
+            # 这样用户只需要 import nvim，其他三个模块的 Option 定义就会自动加载
+            imports = [
+              nixosImpl
+              self.nixosModules.nixvim
+              self.nixosModules.nvf
+              self.nixosModules.nixcat
+            ];
+
             config = lib.mkIf flakeCfg.enable {
-              myConfig.features.git.enable = lib.mkDefault true;
-              myConfig.features.git.defaultBranch = lib.mkDefault flakeCfg.defaultBranch;
+              myConfig.features.nvim.enable = lib.mkDefault true;
+              myConfig.features.nvim.backend = lib.mkDefault flakeCfg.backend;
             };
           };
 
-        homeManagerModules.git =
+        # 2.3 导出 HM 模块 (Bundle)
+        homeManagerModules.nvim =
           let
-            flakeCfg = config.myFlake.features.git;
+            flakeCfg = config.myFlake.features.nvim;
           in
           { ... }:
           {
-            imports = [ hmImpl ];
-            # 同样的逻辑注入到 HM，HM 甚至不知道 NixOS 的存在
+            # 同理，HM 模块也需要携带所有的下级实现
+            imports = [
+              hmImpl
+              self.homeManagerModules.nixvim
+              self.homeManagerModules.nvf
+              self.homeManagerModules.nixcat
+            ];
+
             config = lib.mkIf flakeCfg.enable {
-              myConfig.features.git.enable = lib.mkDefault true;
+              myConfig.features.nvim.enable = lib.mkDefault true;
+              myConfig.features.nvim.backend = lib.mkDefault flakeCfg.backend;
             };
           };
       };
     };
 
   # ============================================================================
-  # 3. 内部策略 (Internal Part)
+  # 3. 内部策略
   # ============================================================================
   internalPart =
     { config, lib, ... }:
     {
       imports = [ publicPart ];
-
-      # 这里的逻辑仅影响当前 Flake，它操作的是 myFlake 的 Option
-      # 只有当 internalPart 被 import 时（即在当前 flake 中），这行才生效
-      config.myFlake.features.git.enable = lib.mkDefault true;
+      config.myFlake.features.nvim.enable = lib.mkDefault true;
     };
 
 in
 {
-  flake.flakeModules.git = publicPart;
+  flake.flakeModules.nvim = publicPart;
   imports = [ internalPart ];
 }
