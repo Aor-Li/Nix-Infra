@@ -31,7 +31,7 @@ let
 
       config.home = lib.mkIf config.modules.homeManager.${name}.enable {
         packages = [
-          inputs.nix-ai-tools.packages.${pkgs.system}.claude-code
+          inputs.nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
         ];
 
         file.".claude/config.yaml".text = ''

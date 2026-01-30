@@ -4,4 +4,22 @@
   "theme": "opencode",
   "model": "anthropic/claude-sonnet-4-5",
   "autoupdate": true,
+  // Providers configurations from clauddy
+  "provider": {
+    "anthropic": {
+      "options": {
+        "baseURL": "https://claudecode.dpdns.org/api"
+      }
+    }
+    //"codex": {
+    //  "options": {
+    //    "baseURL": "https://claudecode.dpdns.org/openai"
+    //  }
+    //},
+    //"gemini": {
+    //  "options": {
+    //    "baseURL": "https://claudecode.dpdns.org/gemini"
+    //  }
+    //}
+  }
 }
