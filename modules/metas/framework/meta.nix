@@ -2,31 +2,34 @@
 {
   options.flake.meta = {
     
-    # root dir 
-    root = "~/infra";
+    root = lib.mkOption {
+      type = lib.types.string;
+      default = "~/infra";
+      description = "Root directory of the project.";
+    };
     
-    # root option name
-    name = "aor";
+    namespace = lib.mkOption {
+      type = lib.types.string;
+      default = "aor";
+      description = "Root namespace of this flake";
+    };
     
-    # all users infos 
     users = lib.mkOption {
       type = lib.types.attrs;
       default = {};
-      description = "用户配置信息";
+      description = "Users infos ( collected from modules/profiles/users)";
     };
 
-    # all hosts infos
     hosts = lib.mkOption {
       type = lib.types.attrs;
       default = {};
-      description = "机器配置信息";
+      description = "Hosts infos ( collected from modules/profiles/hosts)";
     };
 
-    # lib used in this project
     lib = lib.mkOption {
       type = lib.types.attrs;
       default = {};
-      description = "Shared library functions";
+      description = "Project library functions";
     };
   };
 }

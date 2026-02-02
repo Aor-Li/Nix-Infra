@@ -1,18 +1,11 @@
 { self, lib, ... }:
 let
-  namespace = "aor";
-
-  # 模块结构路径 (用于 Export 结构 和 Option 子路径)
-  # 这决定了:
-  # 1. 外部引用路径: inputs.self.nixosModules.features.nvim
-  # 2. 内部配置路径: config.aor.features.nvim
   featurePath = [
     "features"
+    "dev"
     "nvim"
   ];
 
-  # 绝对配置路径 (用于 mkOption 和 set config)
-  # 结果: [ "aor" "features" "nvim" ]
   configPath = [ namespace ] ++ featurePath;
 
   # ============================================================================
