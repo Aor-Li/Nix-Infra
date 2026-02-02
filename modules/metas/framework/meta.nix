@@ -1,21 +1,28 @@
 { config, lib, ... }:
 {
   options.flake.meta = {
+    
+    # root dir 
+    root = "~/infra";
+    
+    # root option name
+    name = "aor";
+    
+    # all users infos 
     users = lib.mkOption {
       type = lib.types.attrs;
       default = {};
       description = "用户配置信息";
     };
+
+    # all hosts infos
     hosts = lib.mkOption {
       type = lib.types.attrs;
       default = {};
       description = "机器配置信息";
     };
-    modules = lib.mkOption {
-      type = lib.types.attrs;
-      default = {};
-      description = "每个flake-part模块的信息";
-    };
+
+    # lib used in this project
     lib = lib.mkOption {
       type = lib.types.attrs;
       default = {};
