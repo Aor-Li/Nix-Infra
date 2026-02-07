@@ -1,7 +1,7 @@
 # 这是一个最简单的功能模板
-{ self, lib, ... }:
+{ config, lib, ... }:
 let
-  inherit (self.meta) namespace;
+  inherit (config.flake.meta) namespace;
   path = [
     feature
     template
