@@ -3,9 +3,9 @@
 let
   inherit (config.flake.meta) namespace;
   path = [
-    feature
-    template
-    foo
+    "feature"
+    "template"
+    "foo"
   ];
 in
 {

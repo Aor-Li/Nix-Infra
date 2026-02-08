@@ -5,13 +5,14 @@
   ...
 }:
 let
-  prefix = "host/";
-
   mkNixosConfig =
-    { hostname, module }:
+    {
+      hostname,
+      module,
+    }:
     let
       hostConfig = config.flake.meta.hosts.${hostname};
-      moduleConfig = config.flake.meta.modules;
+      moduleConfig = config.flake.meta.modules; # [TODO] 修改名字为partConfig,位置移动到flake.modules.parts下
     in
     {
       name = hostname;
@@ -25,13 +26,6 @@ let
 in
 {
   flake.nixosConfigurations =
-    config.flake.modules.nixos or { }
-    |> lib.filterAttrs (name: _module: lib.hasPrefix prefix name)
-    |> lib.mapAttrs' (
-      name: module:
-      let
-        hostname = lib.removePrefix prefix name;
-      in
-      mkNixosConfig { inherit hostname module; }
-    );
+    config.flake.aor.modules.nixos.host or { }
+    |> lib.mapAttrs' (hostname: module: mkNixosConfig { inherit hostname module; });
 }
