@@ -3,9 +3,12 @@ let
   name = "feature/nix/secret";
 in
 {
+  # [TODO] 考虑在nixos层按照sops，并且分别提供host和user层的secrets配置
+
   flake.modules.homeManager.${name} =
     {
       config,
+      lib,
       pkgs,
       userConfig,
       ...
@@ -20,15 +23,6 @@ in
         pkgs.sops
       ];
 
-      sops = {
-        age.keyFile = "/home/${userConfig.username}/.config/sops/age/keys.txt";
-        defaultSopsFile = ../../../../secrets/secrets.yaml;
-      };
-
-      sops.secrets.github_access_token = {
-        # %r will be automaticly replaced with $XDG_RUNTIME_DIR
-        path = "%r/secret.txt";
-      };
-
+      sops.age.keyFile = lib.mkDefault "/home/${userConfig.username}/.config/sops/age/keys.txt";
     };
 }

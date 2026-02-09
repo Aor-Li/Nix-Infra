@@ -1,4 +1,4 @@
-{ config, ... }:
+{ self, ... }:
 let
   flake.aor = {
 
@@ -15,14 +15,22 @@ let
     };
 
     # --- add user role modules ---
-    modules.homeManager.user.aor = {
-      imports = [
-        config.flake.modules.homeManager."role/common" # fixme
-        config.flake.modules.homeManager."role/coder" # fixme
-        config.flake.modules.homeManager."role/gamer" # fixme
-      ];
-    };
+    modules.home.user.aor =
+      { config, userConfig, ... }:
+      {
+        # add roles
+        imports = [
+          self.modules.homeManager."role/common" # fixme
+          self.modules.homeManager."role/coder" # fixme
+          self.modules.homeManager."role/gamer" # fixme
+        ];
 
+        # set secrets
+        sops.defaultSopsFile = ./secrets/secrets.yaml;
+
+        # [TODO] 具体的secret考虑要不要移动到具体功能处处理
+        sops.secrets.github_access_token.path = "/home/${userConfig.username}/.secrets/github_access_token";
+      };
   };
 in
 {

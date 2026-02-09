@@ -11,15 +11,14 @@ let
       module,
     }:
     let
-      hostConfig = config.flake.meta.hosts.${hostname};
-      moduleConfig = config.flake.meta.modules; # [TODO] 修改名字为partConfig,位置移动到flake.modules.parts下
+      hostConfig = config.flake.aor.meta.hosts.${hostname};
     in
     {
       name = hostname;
       value = inputs.nixpkgs.lib.nixosSystem {
         modules = [ module ];
         specialArgs = {
-          inherit hostConfig moduleConfig;
+          inherit hostConfig;
         };
       };
     };

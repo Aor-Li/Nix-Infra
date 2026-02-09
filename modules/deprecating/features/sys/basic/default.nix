@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (config.flake.meta.lib) isDirectSubmodule;
+  inherit (config.flake.aor.lib) isDirectSubmodule;
   name = "feature/sys/basic";
 in
 {
