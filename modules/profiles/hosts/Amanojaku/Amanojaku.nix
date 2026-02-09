@@ -18,7 +18,7 @@ let
     # --- add host machine modules ---
     modules.nixos.host.Amanojaku = {
       imports = [
-        config.flake.modules.nixos."machine/wsl" # [FIXME]
+        config.flake.aor.modules.nixos.machine.wsl
       ];
       nixpkgs.hostPlatform.system = "x86_64-linux"; # [TODO] 测试这个配置是否必要
     };

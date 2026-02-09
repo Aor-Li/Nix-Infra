@@ -18,7 +18,7 @@ let
     # --- add host machine modules ---
     modules.nixos."host/Chimi" = {
       imports = [
-        config.flake.modules.nixos."machine/server" # [FIXME]
+        config.flake.aor.modules.nixos.machine.server
         ./_specifics/hardware-configuration.nix
       ];
       nixpkgs.hostPlatform.system = "x86_64-linux"; # [TODO] 测试这个配置是否必要
