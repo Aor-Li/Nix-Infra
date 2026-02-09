@@ -1,11 +1,10 @@
 { config, ... }:
 let
   inherit (config.flake) aor;
-
-  flake.aor.modules.nixos.feature.nix.settings =
+  nixos =
     { config, ... }:
     {
-      nix.settings = {
+      config.nix.settings = {
         experimental-features = [
           "nix-command"
           "flakes"
@@ -25,16 +24,17 @@ let
         ];
       };
 
-      nixpkgs.config.allowUnfree = true;
+      config.nixpkgs.config.allowUnfree = true;
     };
 
-  flake.aor.modules.home.feature.nix.settings =
+  home =
     { config, ... }:
     {
-      nixpkgs.config.allowUnfreePredicate = _: true;
+      config.nixpkgs.config.allowUnfreePredicate = _: true;
     };
-
 in
 {
-  inherit flake;
+  flake.aor.modules.feature.nix.settings = {
+    inherit nixos home;
+  };
 }

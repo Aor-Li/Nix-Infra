@@ -25,6 +25,6 @@ let
 in
 {
   flake.nixosConfigurations =
-    config.flake.aor.modules.nixos.host or { }
+    config.flake.aor.modules.profile.host or { }
     |> lib.mapAttrs' (hostname: module: mkNixosConfig { inherit hostname module; });
 }

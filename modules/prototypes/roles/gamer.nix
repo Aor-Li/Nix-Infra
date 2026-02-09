@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  flake.aor.modules.home.role.gamer = {
+  flake.aor.modules.prototype.role.gamer = {
     imports = [ ];
   };
 }

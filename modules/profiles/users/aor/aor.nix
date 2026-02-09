@@ -1,7 +1,8 @@
 { config, ... }:
 let
   inherit (config.flake) aor;
-
+in
+{
   flake.aor = {
 
     # --- user info ---
@@ -17,11 +18,11 @@ let
     };
 
     # --- add user role modules ---
-    modules.home.user.aor =
+    modules.profile.user.aor =
       { config, userConfig, ... }:
       {
         # add roles
-        imports = with aor.modules.home.role; [
+        imports = with aor.modules.prototype.role; [
           common
           coder
           gamer
@@ -35,7 +36,4 @@ let
         # [TODO] secrets/.sops.yaml需要理解下规则并重写
       };
   };
-in
-{
-  inherit flake;
 }

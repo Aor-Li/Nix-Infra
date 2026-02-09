@@ -3,9 +3,9 @@ let
   inherit (config.flake) aor;
 in
 {
-  flake.aor.modules.nixos.machine.common = {
+  flake.aor.modules.prototype.machine.common = {
     imports = [
-      aor.modules.nixos.feature.nix
+      aor.modules.feature.nix.nixos
 
       config.flake.modules.nixos."feature/sys"
       config.flake.modules.nixos."feature/nix"

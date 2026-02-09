@@ -1,8 +1,8 @@
 { config, ... }:
 {
-  flake.aor.modules.nixos.machine.wsl = {
+  flake.aor.modules.prototype.machine.wsl = {
     imports = [
-      config.flake.aor.modules.nixos.machine.common
+      config.flake.aor.modules.prototype.machine.common
     ];
   };
 }

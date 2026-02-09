@@ -3,9 +3,9 @@ let
   inherit (config.flake) aor;
 in
 {
-  flake.aor.modules.home.role.common = {
+  flake.aor.modules.prototype.role.common = {
     imports = [
-      aor.modules.home.feature.nix
+      aor.modules.feature.nix.home
 
       config.flake.modules.homeManager."feature/sys"
       config.flake.modules.homeManager."feature/nix"

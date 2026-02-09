@@ -18,9 +18,9 @@ let
     };
 
     # --- add host machine modules ---
-    modules.nixos.host.Bakotsu = {
+    modules.profile.host.Bakotsu = {
       imports = [
-        aor.modules.nixos.machine.wsl
+        aor.modules.prototype.machine.wsl
         ./_specifics/specifics.nix
       ];
       nixpkgs.hostPlatform.system = "x86_64-linux"; # [TODO] 测试这个配置是否必要

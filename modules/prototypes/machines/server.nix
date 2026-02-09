@@ -1,8 +1,8 @@
 { config, ... }:
 {
-  flake.aor.modules.nixos.machine.server = {
+  flake.aor.modules.prototype.machine.server = {
     imports = [
-      config.flake.aor.modules.nixos.machine.common
+      config.flake.aor.modules.prototype.machine.common
     ];
   };
 }

@@ -35,7 +35,7 @@ in
 {
   # [TODO] 这里每个user记录其host，可能需要反过来记录机器上的用户
   flake.homeConfigurations =
-    config.flake.aor.modules.home.user or { }
+    config.flake.aor.modules.profile.user or { }
     |> lib.mapAttrsToList (
       username: module:
       let

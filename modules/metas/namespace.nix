@@ -24,24 +24,39 @@
 
     modules = {
 
-      home = lib.mkOption {
-        description = "A tree of Home Manager modules.";
+      feature = lib.mkOption {
+        description = "A tree of features.";
         default = { };
         type = lib.types.anything;
       };
 
-      nixos = lib.mkOption {
-        description = "A tree of NixOS modules.";
-        default = { };
-        type = lib.types.anything;
+      prototype = {
+        machine = lib.mkOption {
+          description = "A tree of machine prototypes.";
+          default = { };
+          type = lib.types.attrsOf lib.types.deferredModule;
+        };
+
+        role = lib.mkOption {
+          description = "A tree of role prototypes.";
+          default = { };
+          type = lib.types.attrsOf lib.types.deferredModule;
+        };
       };
 
-      darwin = lib.mkOption {
-        description = "A tree of Darwin modules.";
-        default = { };
-        type = lib.types.anything;
-      };
+      profile = {
+        host = lib.mkOption {
+          description = "A tree of host profiles.";
+          default = { };
+          type = lib.types.attrsOf lib.types.deferredModule;
+        };
 
+        user = lib.mkOption {
+          description = "A tree of user profiles.";
+          default = { };
+          type = lib.types.attrsOf lib.types.deferredModule;
+        };
+      };
     };
   };
 }

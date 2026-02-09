@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  flake.aor.modules.home.role.learner = {
+  flake.aor.modules.prototype.role.learner = {
     imports = [ ];
   };
 }

@@ -18,9 +18,9 @@ let
     };
 
     # --- add host machine modules ---
-    modules.nixos."host/Chimi" = {
+    modules.profile.host.Chimi = {
       imports = [
-        aor.modules.nixos.machine.server
+        aor.modules.prototype.machine.server
         ./_specifics/hardware-configuration.nix
       ];
       nixpkgs.hostPlatform.system = "x86_64-linux"; # [TODO] 测试这个配置是否必要

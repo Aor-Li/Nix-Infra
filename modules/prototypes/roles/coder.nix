@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  flake.aor.modules.home.role.coder = {
+  flake.aor.modules.prototype.role.coder = {
     imports = [ ];
   };
 }
