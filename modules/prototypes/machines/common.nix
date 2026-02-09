@@ -1,14 +1,14 @@
 { config, ... }:
 {
   flake.aor.modules.nixos.machine.common = {
-    imports = [
-      config.flake.modules.nixos."feature/sys"
-      config.flake.modules.nixos."feature/nix"
-      config.flake.modules.nixos."feature/tui"
-      config.flake.modules.nixos."feature/gui"
-      config.flake.modules.nixos."feature/app"
-      config.flake.modules.nixos."feature/dev"
-      config.flake.modules.nixos."feature/desktop"
+    imports = with config.flake.modules; [
+      nixos."feature/sys"
+      nixos."feature/nix"
+      nixos."feature/tui"
+      nixos."feature/gui"
+      nixos."feature/app"
+      nixos."feature/dev"
+      nixos."feature/desktop"
     ];
   };
 }

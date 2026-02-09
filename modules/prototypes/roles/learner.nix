@@ -1,12 +1,6 @@
 { config, ... }:
-let
-  flake.modules.homeManager."role/learner" =
-    { options, lib, ... }:
-    {
-      imports = [
-      ];
-    };
-in
 {
-  inherit flake;
+  flake.aor.modules.home.role.learner = {
+    imports = [ ];
+  };
 }

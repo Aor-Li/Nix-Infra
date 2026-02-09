@@ -1,5 +1,7 @@
 { config, ... }:
 let
+  inherit (config.flake) aor;
+
   flake.aor = {
 
     # --- host info ---
@@ -18,7 +20,7 @@ let
     # --- add host machine modules ---
     modules.nixos.host.Amanojaku = {
       imports = [
-        config.flake.aor.modules.nixos.machine.wsl
+        aor.modules.nixos.machine.wsl
       ];
       nixpkgs.hostPlatform.system = "x86_64-linux"; # [TODO] 测试这个配置是否必要
     };

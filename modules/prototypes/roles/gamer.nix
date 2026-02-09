@@ -1,11 +1,6 @@
 { config, ... }:
-let
-  flake.modules.homeManager."role/gamer" =
-    { ... }:
-    {
-      imports = [ ];
-    };
-in
 {
-  inherit flake;
+  flake.aor.modules.home.role.gamer = {
+    imports = [ ];
+  };
 }

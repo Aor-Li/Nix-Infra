@@ -1,5 +1,7 @@
-{ self, ... }:
+{ config, ... }:
 let
+  inherit (config.flake) aor;
+
   flake.aor = {
 
     # --- user info ---
@@ -19,10 +21,10 @@ let
       { config, userConfig, ... }:
       {
         # add roles
-        imports = [
-          self.modules.homeManager."role/common" # fixme
-          self.modules.homeManager."role/coder" # fixme
-          self.modules.homeManager."role/gamer" # fixme
+        imports = with aor.modules.home.role; [
+          common
+          coder
+          gamer
         ];
 
         sops.defaultSopsFile = ./secrets/secrets.yaml;

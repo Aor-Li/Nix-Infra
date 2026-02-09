@@ -1,5 +1,7 @@
 { config, ... }:
 let
+  inherit (config.flake) aor;
+
   flake.aor = {
 
     # --- host info ---
@@ -18,7 +20,7 @@ let
     # --- add host machine modules ---
     modules.nixos."host/Chimi" = {
       imports = [
-        config.flake.aor.modules.nixos.machine.server
+        aor.modules.nixos.machine.server
         ./_specifics/hardware-configuration.nix
       ];
       nixpkgs.hostPlatform.system = "x86_64-linux"; # [TODO] 测试这个配置是否必要
