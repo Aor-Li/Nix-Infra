@@ -1,7 +1,12 @@
 { config, ... }:
+let
+  inherit (config.flake) aor;
+in
 {
   flake.aor.modules.home.role.common = {
     imports = [
+      aor.modules.home.feature.nix
+
       config.flake.modules.homeManager."feature/sys"
       config.flake.modules.homeManager."feature/nix"
 
