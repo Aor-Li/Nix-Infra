@@ -7,12 +7,14 @@ in
     nixos = {
       imports = [
         aor.modules.feature.nix.settings.nixos
+        aor.modules.feature.nix.home-manager.nixos
       ];
     };
 
     home = {
       imports = [
         aor.modules.feature.nix.settings.home
+        aor.modules.feature.nix.home-manager.home
       ];
     };
   };
