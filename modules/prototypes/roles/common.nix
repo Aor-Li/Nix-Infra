@@ -6,6 +6,7 @@ in
   flake.aor.modules.prototype.role.common = {
     imports = [
       aor.modules.feature.nix.home
+      aor.modules.feature.dev.home
 
       config.flake.modules.homeManager."feature/sys"
       config.flake.modules.homeManager."feature/nix"

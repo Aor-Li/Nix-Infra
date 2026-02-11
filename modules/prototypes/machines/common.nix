@@ -6,6 +6,7 @@ in
   flake.aor.modules.prototype.machine.common = {
     imports = [
       aor.modules.feature.nix.nixos
+      aor.modules.feature.dev.nixos
 
       config.flake.modules.nixos."feature/sys"
       config.flake.modules.nixos."feature/nix"

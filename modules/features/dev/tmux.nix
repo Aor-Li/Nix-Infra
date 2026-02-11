@@ -1,10 +1,7 @@
-{ ... }:
-let
-  name = "feature/tui/tmux";
-in
 {
-  flake.modules = {
-    homeManager.${name} =
+  flake.aor.modules.feature.dev.tmux = {
+    nixos = { };
+    home =
       { pkgs, ... }:
       {
         programs.tmux = {
@@ -16,7 +13,7 @@ in
 
           # Stop tmux+escape craziness.
           escapeTime = 0;
-          
+
           # Force tmux to use /tmp for sockets (WSL2 compat)
           secureSocket = false;
 
@@ -36,11 +33,11 @@ in
 
             # do not rename window automaticly
             set-option -g allow-rename off
-            
+
             # renumber when window closed
             set -g renumber-window on
             set -sg escape-time 100
-            
+
             ###################################################################
             ###  Basic KeyBinds Settings                                    ###
             ###################################################################
@@ -50,7 +47,7 @@ in
             bind - split-window -v -c "#{pane_current_path}"
             bind '"' split-window -v -c "#{pane_current_path}"
             bind % split-window -h -c "#{pane_current_path}"
-           
+
             ###################################################################
             ###  Appearance Settings                                        ###
             ###################################################################
@@ -68,7 +65,7 @@ in
             set -g @catppuccin_window_default_text "#W"
             set -g @catppuccin_window_current_text "#W"
             set -g @catppuccin_window_text "#W"
-            
+
             # --- status bar ---
             set-option -g status-position top
 
