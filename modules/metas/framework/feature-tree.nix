@@ -17,7 +17,7 @@ let
   #   - fixed fields: nixos/home/part/_meta
   #   - everything else => sub-feature node (recursive)
   #
-  # NOTE: we use a "description-decoupled" variant for recursion in freeformType
+  # [NOTE]: we use a "description-decoupled" variant for recursion in freeformType
   # to avoid description self-recursion blow-ups in docs/errors.
   featureNodeType = types.submodule (
     { ... }:

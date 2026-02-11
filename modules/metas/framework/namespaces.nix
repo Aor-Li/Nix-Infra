@@ -24,12 +24,6 @@
 
     modules = {
 
-      feature = lib.mkOption {
-        description = "A tree of features.";
-        default = { };
-        type = lib.types.anything;
-      };
-
       prototype = {
         machine = lib.mkOption {
           description = "A tree of machine prototypes.";
