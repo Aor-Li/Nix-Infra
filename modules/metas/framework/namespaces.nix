@@ -3,6 +3,12 @@
   options.flake.aor = {
 
     meta = {
+      root = lib.mkOption {
+        type = lib.types.str;
+        default = "/home/aor/infra";
+        description = "Root path of the project ( Used for relative paths in modules and features)";
+      };
+
       users = lib.mkOption {
         type = lib.types.attrs;
         default = { };
