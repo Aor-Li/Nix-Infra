@@ -1,137 +1,55 @@
 {
+  "display": {
+    "separator": "  ",
+    "size": {
+      "binaryPrefix": "jedec"
+    }
+  },
   "logo": {
     "height": 20,
     "padding": {
       "left": 3,
-      "top": 2
+      "top": 1
     },
     "type": "builtin",
     "width": 20
   },
   "modules": [
     "break",
-    {
-      "format": "┌──────────────────────Hardware──────────────────────┐",
-      "type": "custom"
-    },
-    {
-      "key": " PC",
-      "keyColor": "green",
-      "type": "host"
-    },
-    {
-      "key": "│ ├ ",
-      "keyColor": "green",
-      "type": "cpu"
-    },
-    {
-      "key": "│ ├󰍛 ",
-      "keyColor": "green",
-      "type": "gpu"
-    },
-    {
-      "key": "│ ├󰍛 ",
-      "keyColor": "green",
-      "type": "memory"
-    },
-    {
-      "key": "└ └ ",
-      "keyColor": "green",
-      "type": "disk"
-    },
-    {
-      "format": "└────────────────────────────────────────────────────┘",
-      "type": "custom"
-    },
     "break",
-    {
-      "format": "┌──────────────────────Software──────────────────────┐",
-      "type": "custom"
-    },
-    {
-      "key": " OS",
-      "keyColor": "yellow",
-      "type": "os"
-    },
-    {
-      "key": "│ ├ ",
-      "keyColor": "yellow",
-      "type": "kernel"
-    },
-    {
-      "key": "│ ├ ",
-      "keyColor": "yellow",
-      "type": "bios"
-    },
-    {
-      "key": "│ ├󰏖 ",
-      "keyColor": "yellow",
-      "type": "packages"
-    },
-    {
-      "key": "└ └ ",
-      "keyColor": "yellow",
-      "type": "shell"
-    },
+
+    // ── Hardware ──
+    { "type": "custom", "format": "\u001b[32m  ─────────────────────────── Hardware ─────────────────────────── " },
+   
+    { "type": "host",   "key": "   󰌢       PC", "keyColor": "green" },
+    { "type": "cpu",    "key": "         CPU", "keyColor": "green" },
+    { "type": "gpu",    "key": "         GPU", "keyColor": "green" },
+    { "type": "memory", "key": "         MEM", "keyColor": "green" },
+    //{ "type": "disk",   "key": "  󰋊     DISK", "keyColor": "green" },
     "break",
-    {
-      "key": " DE",
-      "keyColor": "blue",
-      "type": "de"
-    },
-    {
-      "key": "│ ├ ",
-      "keyColor": "blue",
-      "type": "lm"
-    },
-    {
-      "key": "│ ├ ",
-      "keyColor": "blue",
-      "type": "wm"
-    },
-    {
-      "key": "│ ├󰉼 ",
-      "keyColor": "blue",
-      "type": "wmtheme"
-    },
-    {
-      "key": "└ └ ",
-      "keyColor": "blue",
-      "type": "terminal"
-    },
-    {
-      "format": "└────────────────────────────────────────────────────┘",
-      "type": "custom"
-    },
+
+    // ── System ──
+    { "type": "custom", "format": "\u001b[33m System " },
+    { "type": "os",       "key": "        OS", "keyColor": "yellow" },
+    { "type": "kernel",   "key": "        KER", "keyColor": "yellow" },
+    { "type": "shell",    "key": "        SHL", "keyColor": "yellow" },
+    { "type": "terminal", "key": "        TRM", "keyColor": "yellow" },
+    { "type": "packages", "key": "  󰏖     PKG", "keyColor": "yellow" },
     "break",
+
+    // ── Status ──
+    { "type": "custom", "format": "\u001b[36m ─── Status ───" },
+    { "type": "uptime",    "key": "  󰅐       UP", "keyColor": "cyan" },
+    { "type": "cpuusage",  "key": "  󰓅     LOAD", "keyColor": "cyan" },
+    { "type": "localip",   "key": "  󰛳       IP", "keyColor": "cyan" },
+    { "type": "processes", "key": "        PRC", "keyColor": "cyan" },
+    { "type": "datetime",  "key": "  󰃰     TIME", "keyColor": "cyan" },
+    "break",
+
+    // ── Color palette ──
     {
-      "format": "┌────────────────────Uptime / Age / DT────────────────────┐",
-      "type": "custom"
-    },
-    {
-      "key": "  OS Age ",
-      "keyColor": "magenta",
-      "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days",
-      "type": "command"
-    },
-    {
-      "key": "  Uptime ",
-      "keyColor": "magenta",
-      "type": "uptime"
-    },
-    {
-      "key": "  DateTime ",
-      "keyColor": "magenta",
-      "type": "datetime"
-    },
-    {
-      "format": "└─────────────────────────────────────────────────────────┘",
-      "type": "custom"
-    },
-    {
-      "paddingLeft": 2,
-      "symbol": "circle",
-      "type": "colors"
+      "type": "custom",
+      "format": "\u001b[33m󰮯 \u001b[32m󰊠 \u001b[34m󰊠 \u001b[31m󰊠 \u001b[36m󰊠 \u001b[35m󰊠 \u001b[37m󰊠 \u001b[97m󰊠"
     }
   ]
 }
