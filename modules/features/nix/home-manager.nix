@@ -1,23 +1,26 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
 let
-  name = "feature/nix/home-manager";
+  inherit (config.flake) aor;
+
+  nixos =
+    { config, ... }:
+    {
+      imports = [
+        inputs.home-manager.nixosModules.home-manager
+      ];
+    };
+
+  home =
+    { userConfig, ... }:
+    {
+      programs.home-manager.enable = true;
+      home.username = userConfig.username;
+      home.homeDirectory = "/home/${userConfig.username}";
+      home.stateVersion = "25.05";
+    };
 in
 {
-  flake.modules = {
-    nixos.${name} =
-      { ... }:
-      {
-        imports = [
-          inputs.home-manager.nixosModules.home-manager
-        ];
-      };
-    homeManager.${name} =
-      { userConfig, ... }:
-      {
-        programs.home-manager.enable = true;
-        home.username = userConfig.username;
-        home.homeDirectory = "/home/${userConfig.username}";
-        home.stateVersion = "25.05";
-      };
+  flake.aor.modules.feature.nix.home-manager = {
+    inherit nixos home;
   };
 }

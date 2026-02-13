@@ -1,14 +1,11 @@
 { config, ... }:
 let
-  flake = {
-    modules.homeManager."user/aor" = {
-      imports = [
-        config.flake.modules.homeManager."role/common"
-        config.flake.modules.homeManager."role/coder"
-        config.flake.modules.homeManager."role/gamer"
-      ];
-    };
+  inherit (config.flake) aor;
+in
+{
+  flake.aor = {
 
+    # --- user info ---
     meta.users.aor = {
       username = "aor";
       fullname = "Aor-Li";
@@ -19,8 +16,24 @@ let
         "Chimi"
       ];
     };
+
+    # --- add user role modules ---
+    modules.profile.user.aor =
+      { config, userConfig, ... }:
+      {
+        # add roles
+        imports = with aor.modules.prototype.role; [
+          common
+          coder
+          gamer
+        ];
+
+        sops.defaultSopsFile = ./secrets/secrets.yaml;
+
+        # [TODO] 具体的secret考虑要不要移动到具体功能处处理
+        sops.secrets.github_access_token.path = "/home/${userConfig.username}/.secrets/github_access_token";
+
+        # [TODO] secrets/.sops.yaml需要理解下规则并重写
+      };
   };
-in
-{
-  inherit flake;
 }

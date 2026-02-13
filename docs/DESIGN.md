@@ -103,7 +103,7 @@ in
 { config, lib, ... }:
 let
   name = "feature/nix";
-  inherit (config.flake.meta.lib) isDirectSubmodule;
+  inherit (config.flake.aor.lib) isDirectSubmodule;
   modules = config.flake.modules.nixos;
 in
 {

@@ -1,13 +1,8 @@
-{ config, ... }:
-let
-  flake.modules.nixos."machine/desktop" =
-    { hostConfig, ... }:
-    {
-      imports = [
-        config.flake.modules.nixos."machine/common"
-      ];
-    };
-in
+{ config, lib, ... }:
 {
-  inherit flake;
+  flake.aor.modules.prototype.machine.desktop = {
+    imports = [
+      config.flake.aor.modules.prototype.machine.common
+    ];
+  };
 }

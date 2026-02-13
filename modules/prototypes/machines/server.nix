@@ -1,13 +1,8 @@
 { config, ... }:
-let
-  flake.modules.nixos."machine/server" =
-    { hostConfig, ... }:
-    {
-      imports = [
-        config.flake.modules.nixos."machine/common"
-      ];
-    };
-in
 {
-  inherit flake;
+  flake.aor.modules.prototype.machine.server = {
+    imports = [
+      config.flake.aor.modules.prototype.machine.common
+    ];
+  };
 }
