@@ -5,16 +5,23 @@ in
 {
   flake.aor.modules.feature.dev.fastfetch = {
     home =
-      { config, ... }:
+      { config, hostConfig, ... }:
       {
         programs.fastfetch.enable = true;
+        
+        home.shellAliases = {
+          ff = "fastfetch";
+        };
+
+        # link config
         xdg.configFile."fastfetch/config.jsonc".source = config.lib.file.mkOutOfStoreSymlink (
           "${root}/modules/features/dev/fastfetch/config.jsonc"
         );
-      };
 
-    _meta = {
-      inherit root;
-    };
+        # link logo
+        xdg.configFile."fastfetch/logo.jpg".source = config.lib.file.mkOutOfStoreSymlink (
+          "${root}/modules/features/dev/fastfetch/logos/${hostConfig.name}.jpg"
+        );
+      };
   };
 }
