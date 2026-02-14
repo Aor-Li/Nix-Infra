@@ -1,10 +1,6 @@
-{ ... }:
-let
-  name = "feature/tui/shell/starship";
-in
 {
-  flake.modules = {
-    homeManager.${name} =
+  flake.aor.modules.feature.dev.starhip = {
+    home =
       { lib, ... }:
       {
         programs.starship = {
