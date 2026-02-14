@@ -4,17 +4,14 @@
 
     // [TODO] 这个配置只适合Bokatsu
     // [HACK] vscode terminal显示不正常
-    // "logo": {
-    //     "type": "auto",
-    //     "source": "/home/aor/.config/fastfetch/logo.png",
-    //     "width": 60,
-    //     "height": 33,
-    //     "padding": {
-    //         "top": 1,
-    //         "left": 2,
-    //         "right": 2
-    //     }
-    // },
+    "logo": {
+        "source": "nixos_old",
+        "padding": {
+            "top": 4,
+            "left": 2,
+            "right": 4
+        }
+    },
     "display": {
         "color": {
             "keys": "blue"
