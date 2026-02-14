@@ -4,17 +4,17 @@
 
     // [TODO] 这个配置只适合Bokatsu
     // [HACK] vscode terminal显示不正常
-    "logo": {
-        "type": "auto",
-        "source": "/home/aor/.config/fastfetch/logo.jpg",
-        "width": 60,
-        "height": 33,
-        "padding": {
-            "top": 1,
-            "left": 2,
-            "right": 2
-        }
-    },
+    // "logo": {
+    //     "type": "auto",
+    //     "source": "/home/aor/.config/fastfetch/logo.png",
+    //     "width": 60,
+    //     "height": 33,
+    //     "padding": {
+    //         "top": 1,
+    //         "left": 2,
+    //         "right": 2
+    //     }
+    // },
     "display": {
         "color": {
             "keys": "blue"
@@ -31,6 +31,7 @@
         "brightColor": false
     },
     "modules": [
+        "break",
         {
             "type": "version",
             "key": "┌───────────────┬─{$1}┐\u001b[41D",

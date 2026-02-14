@@ -20,8 +20,8 @@ in
 
         # link logo
         # [FIXME] 这里公司不支持上传图片，回家处理
-        xdg.configFile."fastfetch/logo.jpg".source = config.lib.file.mkOutOfStoreSymlink (
-          "${root}/modules/features/dev/fastfetch/logos/${hostConfig.name}.jpg"
+        xdg.configFile."fastfetch/logo.png".source = config.lib.file.mkOutOfStoreSymlink (
+          "${root}/modules/features/dev/fastfetch/logos/${hostConfig.name}.png"
         );
       };
   };
