@@ -11,8 +11,12 @@
           enable = lib.mkEnableOption "";
         };
 
+        imports = [
+          inputs.nixcat.homeModule
+        ];
+
         config = lib.mkIf cfg.enable {
-          programs.nixcat.enable = true;
+          nixCats.enable = true;
         };
       };
   };

@@ -32,14 +32,14 @@
           };
           aor.modules.feature.dev.neovim = lib.mkMerge [
             (lib.mkIf (cfg.impl == "nvf") {
-              cfg.nvf.enable = true;
-            }),
-            (lib.mkIf (cfg.impl == "nvf") {
-              cfg.nvf.enable = true;
-            }),
-            (lib.mkIf (cfg.impl == "nvf") {
-              cfg.nvf.enable = true;
-            }),
+              nvf.enable = true;
+            })
+            (lib.mkIf (cfg.impl == "nixcat") {
+              nixcat.enable = true;
+            })
+            (lib.mkIf (cfg.impl == "lazyvim") {
+              lazyvim.enable = true;
+            })
           ];
         };
       };

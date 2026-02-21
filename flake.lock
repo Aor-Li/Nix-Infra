@@ -754,6 +754,21 @@
         "type": "github"
       }
     },
+    "nixcat": {
+      "locked": {
+        "lastModified": 1770584904,
+        "narHash": "sha256-9Zaz8lbKF2W9pwXZEnbiGsicHdBoU+dHt3Wv3mCJoZ8=",
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "rev": "538fdde784d2909700d97a8ef307783b33a86fb1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "type": "github"
+      }
+    },
     "nixd": {
       "inputs": {
         "flake-parts": [
@@ -1125,6 +1140,7 @@
         "llm-agents": "llm-agents",
         "niri": "niri",
         "nix-ai-tools": "nix-ai-tools",
+        "nixcat": "nixcat",
         "nixos-wsl": "nixos-wsl",
         "nixowos": "nixowos",
         "nixpkgs": "nixpkgs_9",

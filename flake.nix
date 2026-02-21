@@ -33,6 +33,9 @@
     nvf.url = "github:NotAShelf/nvf";
     nvf.inputs.nixpkgs.follows = "nixpkgs";
 
+    # nixcat
+    nixcat.url = "github:BirdeeHub/nixCats-nvim";
+
     # devenv
     devenv.url = "github:cachix/devenv";
 
