@@ -1,19 +1,30 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  path = [
+    "aor"
+    "modules"
+    "feature"
+    "sys"
+    "sleep"
+  ];
+in
 {
-  flake.aor.modules.feature.sys.sleep = {
+  flake = lib.setAttrByPath path {
     nixos =
       { config, lib, ... }:
       let
-        cfg = config.aor.modules.feature.sys.sleep;
+        cfg = lib.getAttrFromPath path config;
       in
       {
-        options.aor.modules.feature.sys.sleep.mode = lib.mkOption {
-          type = lib.types.enum [
-            "normal"
-            "never"
-          ];
-          default = "normal";
-          description = "Sleep mode configuration";
+        options = lib.setAttrByPath path {
+          mode = lib.mkOption {
+            type = lib.types.enum [
+              "normal"
+              "never"
+            ];
+            default = "normal";
+            description = "Sleep mode configuration";
+          };
         };
 
         config = lib.mkIf (cfg.mode == "never") {
