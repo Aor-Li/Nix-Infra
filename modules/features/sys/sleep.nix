@@ -29,6 +29,7 @@ in
 
         config = lib.mkIf (cfg.mode == "never") {
 
+          # stop automatic sleeping
           systemd.targets = {
             sleep.enable = false;
             suspend.enable = false;
@@ -36,6 +37,7 @@ in
             hybrid-sleep.enable = false;
           };
 
+          # stop physical switches
           services.logind = {
             lidSwitch = "ignore";
             lidSwitchExternalPower = "ignore";
