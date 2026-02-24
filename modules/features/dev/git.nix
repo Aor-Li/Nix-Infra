@@ -1,5 +1,13 @@
 {
   flake.aor.modules.feature.dev.git = {
+    nixos =
+      { pkgs, ... }:
+      {
+        environment.systemPackages = with pkgs; [
+          git
+        ];
+      };
+
     home =
       { userConfig, ... }:
       {

@@ -7,6 +7,7 @@ in
     imports = [
       aor.modules.feature.nix.nixos
       aor.modules.feature.dev.nixos
+      aor.modules.feature.sys.nixos
 
       config.flake.modules.nixos."feature/sys"
       config.flake.modules.nixos."feature/nix"

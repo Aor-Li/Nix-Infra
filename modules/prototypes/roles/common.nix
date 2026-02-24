@@ -7,6 +7,7 @@ in
     imports = [
       aor.modules.feature.nix.home
       aor.modules.feature.dev.home
+      #aor.modules.feature.sys.home
 
       config.flake.modules.homeManager."feature/sys"
       config.flake.modules.homeManager."feature/nix"
