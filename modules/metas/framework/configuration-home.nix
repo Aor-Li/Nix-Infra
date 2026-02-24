@@ -18,7 +18,7 @@ let
     {
       name = "${username}@${hostname}";
       value = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs.legacyPackages.${hostConfig.system};
+        pkgs = inputs.nixpkgs.legacyPackages.${hostConfig.system}; # [HACK] 添加overlay后需要调整pkgs定义 
         modules = [
           module
         ];
