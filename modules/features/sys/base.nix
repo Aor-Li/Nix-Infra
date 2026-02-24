@@ -13,10 +13,8 @@
             vim
             wget
             tree
-
             htop
             btop
-
             fd
             fzf
           ];

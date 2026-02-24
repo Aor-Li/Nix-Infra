@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.aor.moduels.feature.sys.boot-loader = {
+  flake.aor.modules.feature.sys.boot-loader = {
     nixos =
       { lib, hostConfig, ... }:
       {
