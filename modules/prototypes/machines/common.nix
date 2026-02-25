@@ -8,6 +8,7 @@ in
       aor.modules.feature.nix.nixos
       aor.modules.feature.dev.nixos
       aor.modules.feature.sys.nixos
+      aor.modules.feature.network.nixos
 
       config.flake.modules.nixos."feature/sys"
       config.flake.modules.nixos."feature/nix"

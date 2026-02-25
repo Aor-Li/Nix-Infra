@@ -8,6 +8,7 @@ in
       aor.modules.feature.nix.home
       aor.modules.feature.dev.home
       #aor.modules.feature.sys.home
+      aor.modules.feature.network.home
 
       config.flake.modules.homeManager."feature/sys"
       config.flake.modules.homeManager."feature/nix"
