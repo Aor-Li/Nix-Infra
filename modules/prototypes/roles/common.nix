@@ -9,8 +9,8 @@ in
       aor.modules.feature.dev.home
       #aor.modules.feature.sys.home
       aor.modules.feature.network.home
+      aor.modules.feature.desktop.home
 
-      config.flake.modules.homeManager."feature/sys"
       config.flake.modules.homeManager."feature/nix"
 
       config.flake.modules.homeManager."feature/ai"

@@ -14,7 +14,7 @@
               kdePackages.fcitx5-qt
 
               # “开箱即用”的中文拼音/双拼/码表等（更像你想要的“基础中英文能力”）
-              fcitx5-chinese-addons
+              qt6Packages.fcitx5-chinese-addons
 
               # 如果你偏好 Rime（可选，但很多人会用）
               fcitx5-rime
@@ -26,5 +26,7 @@
           };
         };
       };
+
+    home = { ... }: { };
   };
 }
