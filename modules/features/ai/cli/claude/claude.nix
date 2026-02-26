@@ -12,7 +12,12 @@ in
 {
   flake = lib.setAttrByPath path {
     home =
-      { config, lib, ... }:
+      {
+        config,
+        lib,
+        pkgs,
+        ...
+      }:
       let
         cfg = lib.getAttrByPath path config;
         inherit (pkgs.stdenv.hostPlatform) system;
@@ -37,12 +42,12 @@ in
             ];
           }
           ((lib.mkIf cfg.provider == "Clauddy") {
-            sops.secrets.clauddy_api_key = {
-              mode = "0400";
-            };
+            # sops.secrets.clauddy_api_key = {
+            #   mode = "0400";
+            # };
           })
           ((lib.mkIf cfg.provider == "Huawei") {
-            sops.secrets.huawei_claude_oauth_token = { };
+            # sops.secrets.huawei_claude_oauth_token = { };
           })
         ];
       };
