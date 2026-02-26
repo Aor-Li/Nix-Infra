@@ -31,8 +31,8 @@ in
             default = "";
           };
           no_proxy = lib.mkOption {
-            type = types.listOf types.str;
-            default = [ ];
+            type = types.str;
+            default = "";
           };
         };
 

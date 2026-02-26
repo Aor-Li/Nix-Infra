@@ -1,5 +1,5 @@
 {
-  flake.aor.profiles.host.Bakotsu.imports =
+  flake.aor.modules.profile.host.Bakotsu =
     { pkgs, ... }:
     {
       # certs

@@ -6,7 +6,5 @@
         # [HACK] 有需要再启用
         services.tailscale.enable = false;
       };
-
-    home = { ... }: { };
   };
 }
