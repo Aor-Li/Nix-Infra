@@ -1,15 +1,11 @@
-{ ... }:
-let
-  name = "feature/nix/nix-index";
-in 
 {
-  flake.modules.nixos.${name} =
-    { ... }:
-    {
+  flake.aor.modules.feature.nix.nix-index = {
+    nixos = {
       programs.nix-index = {
         enable = true;
         enableBashIntegration = true;
         enableFishIntegration = true;
       };
     };
+  };
 }

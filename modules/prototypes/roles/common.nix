@@ -12,8 +12,6 @@ in
       aor.modules.feature.network.home
       aor.modules.feature.desktop.home
 
-      config.flake.modules.homeManager."feature/nix"
-
       config.flake.modules.homeManager."feature/gui"
       config.flake.modules.homeManager."feature/dev"
     ];

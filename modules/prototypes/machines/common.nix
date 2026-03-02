@@ -12,7 +12,6 @@ in
       aor.modules.feature.network.nixos
       aor.modules.feature.desktop.nixos
 
-      config.flake.modules.nixos."feature/nix"
       config.flake.modules.nixos."feature/gui"
       config.flake.modules.nixos."feature/dev"
     ];
