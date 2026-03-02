@@ -1,5 +1,5 @@
 {
-  flake.aor.modules.feature.dev.starhip = {
+  flake.aor.modules.feature.dev.starship = {
     home =
       { lib, ... }:
       {
