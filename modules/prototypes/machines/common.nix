@@ -8,14 +8,13 @@ in
       aor.modules.feature.nix.nixos
       aor.modules.feature.dev.nixos
       aor.modules.feature.sys.nixos
+      aor.modules.feature.app.nixos
       aor.modules.feature.network.nixos
       aor.modules.feature.desktop.nixos
 
       config.flake.modules.nixos."feature/nix"
       config.flake.modules.nixos."feature/gui"
-      config.flake.modules.nixos."feature/app"
       config.flake.modules.nixos."feature/dev"
-      config.flake.modules.nixos."feature/desktop"
     ];
   };
 }

@@ -1,4 +1,3 @@
-{ ... }:
 {
   flake.aor.modules.feature.sys.base = {
     nixos =
