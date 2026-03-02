@@ -5,6 +5,7 @@ in
 {
   flake.aor.modules.prototype.machine.common = {
     imports = [
+      aor.modules.feature.ai.nixos
       aor.modules.feature.nix.nixos
       aor.modules.feature.dev.nixos
       aor.modules.feature.sys.nixos

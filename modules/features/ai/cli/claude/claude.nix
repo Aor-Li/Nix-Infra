@@ -19,7 +19,7 @@ in
         ...
       }:
       let
-        cfg = lib.getAttrByPath path config;
+        cfg = lib.getAttrFromPath path config;
         inherit (pkgs.stdenv.hostPlatform) system;
       in
       {
@@ -35,21 +35,33 @@ in
           };
         };
 
-        config = lib.mkIf (cfg.enable) lib.mkMerge [
-          {
-            packages = [
+        config = lib.mkMerge [
+          (lib.mkIf cfg.enable {
+            home.packages = [
               inputs.nix-ai-tools.packages.${system}.claude-code
             ];
-          }
-          ((lib.mkIf cfg.provider == "Clauddy") {
-            # sops.secrets.clauddy_api_key = {
-            #   mode = "0400";
-            # };
           })
-          ((lib.mkIf cfg.provider == "Huawei") {
+
+          (lib.mkIf (cfg.enable && cfg.provider == "Clauddy") {
+            sops = {
+              secrets.clauddy_api_key.path = "%r/secrets/clauddy_api_key.txt";
+              templates."%r/claude.settings.json" = {
+                content = builtins.toJSON {
+                  env = {
+                    ANTHROPIC_BASE_URL = "https://claudecode.dpdns.org/api";
+                    ANTHROPIC_AUTH_TOKEN = config.sops.placeholder.clauddy_api_key;
+                  };
+                };
+                path = "${config.home.homeDirectory}/.claude/settings.json";
+              };
+            };
+          })
+
+          (lib.mkIf (cfg.enable && cfg.provider == "Huawei") {
             # sops.secrets.huawei_claude_oauth_token = { };
           })
         ];
+
       };
   };
 }
