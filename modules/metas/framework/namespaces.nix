@@ -28,6 +28,12 @@
       description = "Project library functions";
     };
 
+    devShells = lib.mkOption {
+      description = "Development shell environments (functions from pkgs to derivation)";
+      default = { };
+      type = lib.types.attrsOf lib.types.raw;
+    };
+
     modules = {
 
       prototype = {
