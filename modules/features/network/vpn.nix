@@ -37,6 +37,11 @@ in
         };
 
         config = lib.mkIf (cfg.enable && cfg.proxy != "") {
+          # 标准的网络proxy设置
+          networking.proxy.default = cfg.proxy;
+          networking.proxy.noProxy = cfg.no_proxy;
+
+          # 部分应用依赖大写的环境变量，这里都补上
           environment.variables = {
             http_proxy = cfg.proxy;
             https_proxy = cfg.proxy;
@@ -48,6 +53,7 @@ in
             ALL_PROXY = cfg.proxy;
             NO_PROXY = cfg.no_proxy;
           };
+
         };
       };
   };
