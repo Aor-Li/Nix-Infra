@@ -1,5 +1,5 @@
 {
-  flake.aor.modules.feature.app.ghostty = {
+  flake.aor.modules.feature.desktop.apps.ghostty = {
     nixos = { ... }: { };
     home =
       { pkgs, ... }:

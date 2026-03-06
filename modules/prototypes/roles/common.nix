@@ -9,7 +9,6 @@ in
       aor.modules.feature.nix.home
       aor.modules.feature.dev.home
       aor.modules.feature.sys.home
-      aor.modules.feature.app.home
       aor.modules.feature.network.home
       aor.modules.feature.desktop.home
 

@@ -1,6 +1,5 @@
-{ ... }:
 {
-  flake.aor.modules.feature.app.obsidian = {
+  flake.aor.modules.feature.desktop.apps.obsidian = {
     nixos = { ... }: { };
     home =
       { ... }:
