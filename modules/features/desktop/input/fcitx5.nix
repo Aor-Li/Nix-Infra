@@ -1,5 +1,5 @@
 {
-  flake.aor.modules.feature.desktop.fcitx5 = {
+  flake.aor.modules.feature.desktop.input.fcitx5 = {
     nixos =
       { pkgs, lib, ... }:
       {
