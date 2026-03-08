@@ -1,6 +1,6 @@
 { inputs, lib, ... }:
 let
-  path = builtin.splitString "." "aor.modules.feature.desktop.shell.quickshell.presets.dank";
+  path = lib.splitString "." "aor.modules.feature.desktop.shell.quickshell.presets.dank";
 in
 {
   flake = lib.setAttrByPath path {
