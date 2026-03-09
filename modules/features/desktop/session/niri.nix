@@ -2,9 +2,10 @@
 {
   flake.aor.modules.feature.desktop.session.niri = {
     nixos = {
-      imports = [ inputs.niri.nixosModules.niri ];
       programs.niri.enable = true;
     };
-    home = { };
+    home = {
+      imports = [ inputs.niri.homeModules.niri ];
+    };
   };
 }

@@ -1,11 +1,17 @@
-{ inputs, lib, ... }:
+{
+  inputs,
+  config,
+  lib,
+  ...
+}:
 let
   path = lib.splitString "." "aor.modules.feature.desktop.shell.quickshell.presets.dank";
+  inherit (config.flake.aor.meta) root;
 in
 {
   flake = lib.setAttrByPath path {
     home =
-      { ... }:
+      { config, ... }:
       {
         imports = [
           inputs.dms.homeModules.dank-material-shell
@@ -27,12 +33,19 @@ in
               "alttab"
               "binds"
               "colors"
+              "cursor"
               "layout"
               "outputs"
-              "wpblur"
+              "windowrules"
             ];
           };
         };
+
+        # 将dms目录添加到$HOME/.config/niri下，从而能够被include
+        # [TODO]: 创建一个GetFeaturePath函数来简化代码
+        xdg.configFile."niri/dms".source = config.lib.file.mkOutOfStoreSymlink (
+          "${root}/modules/features/desktop/shell/quickshell/presets/dank/dms"
+        );
       };
   };
 }

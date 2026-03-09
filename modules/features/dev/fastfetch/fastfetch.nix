@@ -8,7 +8,7 @@ in
       { config, hostConfig, ... }:
       {
         programs.fastfetch.enable = true;
-        
+
         home.shellAliases = {
           ff = "fastfetch";
         };

@@ -44,12 +44,12 @@ in
 
           (lib.mkIf (cfg.enable && cfg.provider == "Clauddy") {
             sops = {
-              secrets.clauddy_api_key.path = "%r/secrets/clauddy_api_key.txt";
+              secrets.clauddy_auth_token.path = "%r/secrets/clauddy_auth_token.txt";
               templates."%r/claude.settings.json" = {
                 content = builtins.toJSON {
                   env = {
                     ANTHROPIC_BASE_URL = "https://claudecode.dpdns.org/api";
-                    ANTHROPIC_AUTH_TOKEN = config.sops.placeholder.clauddy_api_key;
+                    ANTHROPIC_AUTH_TOKEN = config.sops.placeholder.clauddy_auth_token;
                   };
                 };
                 path = "${config.home.homeDirectory}/.claude/settings.json";
