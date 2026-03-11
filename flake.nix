@@ -43,6 +43,9 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
 
+    # devshell
+    devshell.url = "github:numtide/devshell";
+
     # nix utilities
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
