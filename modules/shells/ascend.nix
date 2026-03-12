@@ -1,21 +1,36 @@
 {
   perSystem =
     { config, pkgs, ... }:
+    let
+      llvm = pkgs.llvmPackages_19;
+
+      python = pkgs.python3.withPackages (
+        ps: with ps; [
+          torch
+          triton
+        ]
+      );
+    in
     {
       devshells.ascend = {
 
+        devshell.stdenv = llvm.stdenv;
+
         packages = with pkgs; [
           # build tools
-          cmake
-          ninja
-          python3
           git
+          cmake
+          ccache
+
+          python
 
           # llvm
-          lld
-          lldb
-          clang
-          clang-tools
+          llvm.stdenv
+          llvm.libllvm
+          llvm.lld
+          llvm.lldb
+          llvm.clang
+          llvm.clang-tools
         ];
 
       };
