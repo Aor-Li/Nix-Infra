@@ -36,15 +36,14 @@
     # nixcat
     nixcat.url = "github:BirdeeHub/nixCats-nvim";
 
+    # devshell
+    devshell.url = "github:numtide/devshell";
     # devenv
     devenv.url = "github:cachix/devenv";
 
     # ai
     llm-agents.url = "github:numtide/llm-agents.nix";
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
-
-    # devshell
-    devshell.url = "github:numtide/devshell";
 
     # nix utilities
     flake-parts.url = "github:hercules-ci/flake-parts";

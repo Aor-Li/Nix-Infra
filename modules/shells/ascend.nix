@@ -2,8 +2,6 @@
   perSystem =
     { config, pkgs, ... }:
     let
-      llvm = pkgs.llvmPackages_19;
-
       python = pkgs.python3.withPackages (
         ps: with ps; [
           torch
@@ -13,24 +11,27 @@
     in
     {
       devshells.ascend = {
-
-        devshell.stdenv = llvm.stdenv;
-
-        packages = with pkgs; [
+        packages = [
           # build tools
-          git
-          cmake
-          ccache
-
-          python
+          pkgs.cmake
+          pkgs.ccache
 
           # llvm
-          llvm.stdenv
-          llvm.libllvm
-          llvm.lld
-          llvm.lldb
-          llvm.clang
-          llvm.clang-tools
+          pkgs.llvmPackages_19.clang-tools
+          pkgs.llvmPackages_19.clang
+          pkgs.llvmPackages_19.lld
+          pkgs.llvmPackages_19.lldb
+          pkgs.llvmPackages_19.libcxx
+          # pkgs.llvmPackages_19.libcxxabi
+
+          python
+        ];
+
+        env = [
+          {
+            name = "LD_LIBRARY_PATH";
+            value = "${pkgs.llvmPackages_19.libcxx.dev}/include/c++/v1";
+          }
         ];
 
       };
