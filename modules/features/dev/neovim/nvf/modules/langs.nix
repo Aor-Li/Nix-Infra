@@ -1,6 +1,6 @@
 {
   flake.aor.modules.feature.dev.neovim.nvf.home = {
-    programs.nvf.vim.languages = {
+    programs.nvf.settings.vim.languages = {
       enableTreesitter = true;
 
       clang = {

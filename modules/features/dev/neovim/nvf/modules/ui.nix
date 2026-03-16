@@ -15,6 +15,7 @@
       tabline.nvimBufferline = {
         enable = true;
       };
+
     };
   };
 }
