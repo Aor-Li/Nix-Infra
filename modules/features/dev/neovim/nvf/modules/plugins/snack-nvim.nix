@@ -4,8 +4,11 @@
       utility.snacks-nvim = {
         enable = true;
         setupOpts = {
-          dashboard.enable = false;
+
           explorer.enable = false;
+
+          # [NOTE] dashboard 看起来有很多依赖，后续再安装
+          #dashboard.enable = false;
         };
       };
     };
