@@ -25,6 +25,8 @@
       };
 
       searchCase = "smart";
+
+      telescope.enable = true;
     };
   };
 }

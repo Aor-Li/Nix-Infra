@@ -4,7 +4,7 @@
 
       cheatsheet.enable = true;
 
-      hardtime-nvim.enable = true;
+      hardtime-nvim.enable = false;
 
       whichKey.enable = true;
 
