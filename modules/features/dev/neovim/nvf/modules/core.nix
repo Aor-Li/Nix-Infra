@@ -18,10 +18,12 @@
         maplocalleader = "\\";
       };
 
+      # 管理剪贴板
       clipboard = {
         enable = true;
+        registers = "unnamedplus";
         providers.xsel.enable = true;
-        providers.wl-copy.enable = true;
+        #providers.wl-copy.enable = true; # swtich for 
       };
 
       searchCase = "smart";

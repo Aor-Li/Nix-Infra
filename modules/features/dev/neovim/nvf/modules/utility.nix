@@ -5,6 +5,7 @@
       diffview-nvim.enable = true;
       motion.flash-nvim.enable = true;
       sleuth.enable = true;
+      multicursors.enable = true;
 
       yanky-nvim = {
         enable = true;
