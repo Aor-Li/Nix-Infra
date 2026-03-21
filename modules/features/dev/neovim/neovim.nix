@@ -21,7 +21,7 @@
               "nixcat"
               "lazyvim"
             ];
-            default = "nvf";
+            default = "lazyvim";
             description = "Neovim implementation to use";
           };
         };

@@ -9,11 +9,9 @@
 
       yanky-nvim = {
         enable = true;
+        # default setting "shada" seems broken
         setupOpts.ring.storage = "sqlite";
       };
-
-      # default setting "shada" seems broken
-      yazi-nvim.enable = true;
 
       # snack-nvim boundle
       snacks-nvim = {

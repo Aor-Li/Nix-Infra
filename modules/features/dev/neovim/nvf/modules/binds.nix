@@ -6,8 +6,17 @@
 
       hardtime-nvim.enable = false;
 
-      whichKey.enable = true;
+      whichKey = {
+        enable = true;
+        setupOpts = {
+          preset = "helix";
+        };
 
+        register = {
+          "<leader>u" = "+ui";
+        };
+
+      };
     };
   };
 }
