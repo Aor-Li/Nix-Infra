@@ -30,9 +30,8 @@ in
               exec ${config.programs.neovim.finalPackage}/bin/nvim "$@"
             '')
 
-            # lsps
-            pkgs.nil
-            pkgs.statix
+            # lint
+            pkgs.markdownlint-cli2
           ];
 
           home.shellAliases = {
