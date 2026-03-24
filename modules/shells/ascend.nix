@@ -6,6 +6,8 @@
       llvm = pkgs.llvmPackages_latest;
       clang = llvm.clang;
 
+      python = pkgs.python311;
+
       # use gcc for needed includes and libs
       gccForLibs = pkgs.stdenv.cc.cc;
       gccLibDir = "${gccForLibs}/lib/gcc/${pkgs.stdenv.targetPlatform.config}/${gccForLibs.version}";
@@ -28,14 +30,12 @@
 
           # llvm
           (pkgs.lib.hiPrio clang)
+          (pkgs.lib.lowPrio pkgs.gcc) # 提供gcc程序通过build.sh检查
           llvm.llvm
           llvm.lld
 
           # python
-          pkgs.python3
-
-          # others
-          (pkgs.lib.lowPrio pkgs.gcc) # 提供gcc程序通过build.sh检查
+          python
         ];
 
         env = [
