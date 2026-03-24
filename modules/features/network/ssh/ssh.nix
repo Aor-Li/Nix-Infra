@@ -19,6 +19,7 @@ in
       }:
       {
         config = lib.mkIf (hostConfig.name == "Bakotsu") {
+          # [HACK] 似乎修改了ssh/config仍然避免不了屏蔽
           home.file.".ssh/config".source = ./config;
         };
       };
