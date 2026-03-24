@@ -13,11 +13,19 @@ let
     # 指向 nixpkgs 中 vscode-lldb 插件安装目录下的 adapter 二进制文件
     exec ${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb "$@"
   '';
+
+  clangd-wrapper = pkgs.writeShellScriptBin "clangd" ''
+    exec ${llvm.clang-tools}/bin/clangd \
+      --query-driver=${llvm.clang}/bin/clang,${llvm.clang}/bin/clang++ \
+      "$@"
+  '';
 in
 {
   packages = [
     # compile tools
-    llvm.clang
+    (pkgs.lib.hiPrio clangd-wrapper)
+    (pkgs.lib.hiPrio llvm.clang)
+    (pkgs.lib.lowPrio pkgs.gcc)
     llvm.clang-tools
     llvm.llvm
     llvm.lld
@@ -47,6 +55,15 @@ in
     hello.exec = ''
       echo hello from $GREET
     '';
+    deploy.exec = ''
+      (
+        cd ${builtins.toString config.devenv.root}
+        git clone https://gitcode.com/Ascend/ascendnpu-ir.git
+        cd ascendnpu-ir
+        git submodule update --init --recursive
+      )
+    '';
+
   };
 
   enterShell = ''

@@ -30,6 +30,9 @@ in
               exec ${config.programs.neovim.finalPackage}/bin/nvim "$@"
             '')
 
+            # tools
+            pkgs.ripgrep
+
             # lint
             pkgs.markdownlint-cli2
           ];
