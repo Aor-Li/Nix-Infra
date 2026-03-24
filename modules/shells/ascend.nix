@@ -23,6 +23,9 @@
           pkgs.ccache
           pkgs.pkg-config
 
+          # debug
+          pkgs.lldb
+
           # llvm
           (pkgs.lib.hiPrio clang)
           llvm.llvm
