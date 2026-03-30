@@ -27,7 +27,7 @@ in
           home.packages = [
             (pkgs.writeShellScriptBin "nvim-lazy" ''
               export NVIM_APPNAME=lazyvim
-              exec ${config.programs.neovim.finalPackage}/bin/nvim "$@"
+              exec ${pkgs.neovim}/bin/nvim "$@"
             '')
 
             # tools
