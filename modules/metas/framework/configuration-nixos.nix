@@ -26,5 +26,8 @@ in
 {
   flake.nixosConfigurations =
     config.flake.aor.modules.profile.host or { }
+    |> lib.filterAttrs (
+      hostname: _: config.flake.aor.meta.hosts.${hostname}.distro == "nixos"
+    )
     |> lib.mapAttrs' (hostname: module: mkNixosConfig { inherit hostname module; });
 }

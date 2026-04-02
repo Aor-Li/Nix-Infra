@@ -22,6 +22,16 @@ let
           default = "desktop";
           description = "Type of this host";
         };
+        distro = lib.mkOption {
+          type = types.enum [
+            "nixos"
+            "ubuntu"
+            "arch"
+            "darwin"
+          ];
+          default = "nixos";
+          description = "OS distribution of this host";
+        };
         system = lib.mkOption {
           type = types.enum [
             "x86_64-linux"

@@ -7,6 +7,7 @@ let
       name = "Bakotsu";
       description = "Bakotsu is a wsl nixos system on my safe-pc at work.";
       type = "wsl";
+      distro = "nixos";
       system = "x86_64-linux";
       owner = {
         name = "Aor-Li";

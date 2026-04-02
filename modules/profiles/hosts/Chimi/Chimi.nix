@@ -9,6 +9,7 @@ let
       description = "Chimi is a nixos server running in a mini-pc at home.";
       name = "Chimi";
       type = "server";
+      distro = "nixos";
       system = "x86_64-linux";
       owner = {
         name = "Aor-Li";

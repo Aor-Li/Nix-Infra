@@ -9,6 +9,7 @@ let
       name = "Amanojaku";
       description = "Amanojaku is a wsl nixos system on my win11 pc with nvdia gpu.";
       type = "wsl";
+      distro = "nixos";
       system = "x86_64-linux";
       owner = {
         name = "Aor-Li";
