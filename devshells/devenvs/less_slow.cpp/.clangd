@@ -1,0 +1,4 @@
+CompileFlags:
+  # BuiltinHeaders: QueryDriver # for clangd-21
+  Remove:
+    - "-fconcepts-diagnostics-depth*"

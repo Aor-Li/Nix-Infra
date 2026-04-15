@@ -2,5 +2,5 @@
 result
 result-*
 
-# Ignore automatically generated direnv output
-.direnv
+# Ignore build dir of projects under devshell
+devshells/**/build

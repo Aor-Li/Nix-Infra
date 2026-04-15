@@ -1,17 +1,11 @@
 { inputs, ... }:
-let
-  name = "feature/nix/home-manager";
-in
 {
-  flake.modules = {
-    nixos.${name} =
-      { ... }:
-      {
-        imports = [
-          inputs.home-manager.nixosModules.home-manager
-        ];
-      };
-    homeManager.${name} =
+  imports = [
+    inputs.home-manager.flakeModules.home-manager
+  ];
+
+  flake.aor.modules.feature.nix.home-manager = {
+    home =
       { userConfig, ... }:
       {
         programs.home-manager.enable = true;

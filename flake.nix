@@ -17,9 +17,33 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    # # hyperland
-    # hyprland.url = "github:hyprwm/Hyprland";
-    # hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    # niri
+    niri.url = "github:sodiboo/niri-flake";
+    niri.inputs.nixpkgs.follows = "nixpkgs";
+
+    # dms
+    dms.url = "github:AvengeMedia/DankMaterialShell";
+    dms.inputs.nixpkgs.follows = "nixpkgs";
+
+    # noctalia
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
+
+    # nvf
+    nvf.url = "github:NotAShelf/nvf";
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
+
+    # nixcat
+    nixcat.url = "github:BirdeeHub/nixCats-nvim";
+
+    # devshell
+    devshell.url = "github:numtide/devshell";
+    # devenv
+    devenv.url = "github:cachix/devenv";
+
+    # ai
+    llm-agents.url = "github:numtide/llm-agents.nix";
+    nix-ai-tools.url = "github:numtide/nix-ai-tools";
 
     # nix utilities
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -29,7 +53,6 @@
 
     # import local flakes
     lazyvim.url = "path:./flakes/lazyvim";
-
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
